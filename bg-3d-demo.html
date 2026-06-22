@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PoliShin — بک‌گراند سه‌بعدی</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0a0a0a;overflow:hidden;font-family:sans-serif;}
+canvas{display:block;width:100vw;height:100vh;cursor:none;}
+.overlay{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;pointer-events:none;
+}
+.logo{
+  font-size:clamp(2.5rem,6vw,5rem);
+  font-weight:900;
+  color:#f0f0f0;
+  letter-spacing:-2px;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+}
+.logo span{color:#c8a84b;}
+.tagline{
+  font-size:clamp(0.7rem,1.2vw,1rem);
+  color:#555;
+  letter-spacing:5px;
+  margin-top:12px;
+  text-transform:uppercase;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+}
+.hint{
+  position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:#2a2a2a;letter-spacing:3px;
+  font-family:'Helvetica Neue',Arial,sans-serif;
+}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="overlay">
+  <div class="logo">POLI<span>SHIN</span></div>
+  <div class="tagline">Professional Glass Polishing</div>
+</div>
+<div class="hint">MOVE YOUR MOUSE</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W, H, mx, my, frame = 0;
+let particles = [], rings = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  mx = W / 2; my = H / 2;
+}
+resize();
+window.addEventListener('resize', () => { resize(); init(); });
+
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+document.addEventListener('mouseleave', () => { mx = W/2; my = H/2; });
+
+/* ── PARTICLE ── */
+class Particle {
+  constructor() { this.init(); }
+  init() {
+    this.ox = Math.random() * W;
+    this.oy = Math.random() * H;
+    this.x  = this.ox;
+    this.y  = this.oy;
+    this.z  = Math.random() * 500 + 100;
+    this.vx = 0; this.vy = 0;
+    this.baseVx = (Math.random() - 0.5) * 0.25;
+    this.baseVy = (Math.random() - 0.5) * 0.25;
+    this.r  = Math.random() * 1.6 + 0.3;
+    this.gold = Math.random() > 0.6;
+    this.phi  = Math.random() * Math.PI * 2;
+    this.phiV = 0.015 + Math.random() * 0.025;
+    this.depth = 1 - this.z / 600;
+  }
+  update() {
+    this.phi += this.phiV;
+    this.ox += this.baseVx;
+    this.oy += this.baseVy;
+    if (this.ox < 0) this.ox = W;
+    if (this.ox > W) this.ox = 0;
+    if (this.oy < 0) this.oy = H;
+    if (this.oy > H) this.oy = 0;
+
+    const dx = mx - this.x;
+    const dy = my - this.y;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    const reach = 160 * this.depth;
+    const force = Math.max(0, reach - dist) / reach;
+
+    this.vx += (Math.cos(Math.atan2(dy, dx)) * force * 0.12 * this.depth);
+    this.vy += (Math.sin(Math.atan2(dy, dx)) * force * 0.12 * this.depth);
+    this.vx += (this.ox - this.x) * 0.012;
+    this.vy += (this.oy - this.y) * 0.012;
+    this.vx *= 0.88;
+    this.vy *= 0.88;
+    this.x += this.vx;
+    this.y += this.vy;
+  }
+  draw() {
+    const s = 550 / (550 + this.z);
+    const r = (this.r + Math.sin(this.phi) * 0.5) * s;
+    const a = s * (0.4 + Math.sin(this.phi) * 0.25);
+    if (this.gold) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, r * 3.5, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(200,168,75,${a * 0.07})`;
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(232,201,106,${a})`;
+      ctx.fill();
+    } else {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(180,180,180,${a * 0.5})`;
+      ctx.fill();
+    }
+  }
+}
+
+/* ── RING ── */
+class Ring {
+  constructor() { this.init(); }
+  init() {
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.r  = Math.random() * 80 + 30;
+    this.tilt = Math.random() * 0.6 + 0.1;
+    this.rot = Math.random() * Math.PI * 2;
+    this.rotV = (Math.random() - 0.5) * 0.004;
+    this.vx = (Math.random() - 0.5) * 0.12;
+    this.vy = (Math.random() - 0.5) * 0.12;
+    this.alpha = Math.random() * 0.055 + 0.015;
+  }
+  update() {
+    this.rot += this.rotV;
+    this.x += this.vx;
+    this.y += this.vy;
+    const dx = mx - this.x, dy = my - this.y;
+    const d = Math.sqrt(dx*dx+dy*dy);
+    if (d < 250) { this.vx -= dx*0.0006; this.vy -= dy*0.0006; }
+    this.vx *= 0.995; this.vy *= 0.995;
+    if (this.x < -this.r) this.x = W+this.r;
+    if (this.x > W+this.r) this.x = -this.r;
+    if (this.y < -this.r) this.y = H+this.r;
+    if (this.y > H+this.r) this.y = -this.r;
+  }
+  draw() {
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rot);
+    ctx.beginPath();
+    ctx.ellipse(0, 0, this.r, this.r * this.tilt, 0, 0, Math.PI*2);
+    ctx.strokeStyle = `rgba(200,168,75,${this.alpha})`;
+    ctx.lineWidth = 0.7;
+    ctx.stroke();
+    ctx.restore();
+  }
+}
+
+/* ── GRID DOTS ── */
+function drawGrid() {
+  const cols = 20, rows = 12;
+  const cw = W / cols, ch = H / rows;
+  for (let i = 0; i <= cols; i++) {
+    for (let j = 0; j <= rows; j++) {
+      const bx = i * cw, by = j * ch;
+      const dx = mx - bx, dy = my - by;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      const pull = Math.max(0, 220 - d) / 220;
+      const x = bx + dx * pull * 0.3;
+      const y = by + dy * pull * 0.3;
+      const a = 0.04 + pull * 0.12;
+      ctx.beginPath();
+      ctx.arc(x, y, 0.7 + pull * 1.2, 0, Math.PI*2);
+      ctx.fillStyle = pull > 0.3
+        ? `rgba(200,168,75,${a})`
+        : `rgba(255,255,255,${a})`;
+      ctx.fill();
+    }
+  }
+}
+
+/* ── CONNECTIONS ── */
+function drawConnections() {
+  const g = particles.filter(p => p.gold);
+  for (let i = 0; i < g.length; i++) {
+    for (let j = i+1; j < g.length; j++) {
+      const dx = g[i].x - g[j].x, dy = g[i].y - g[j].y;
+      const d = Math.sqrt(dx*dx+dy*dy);
+      if (d < 110) {
+        const a = (1 - d/110) * 0.18;
+        ctx.beginPath();
+        ctx.moveTo(g[i].x, g[i].y);
+        ctx.lineTo(g[j].x, g[j].y);
+        ctx.strokeStyle = `rgba(200,168,75,${a})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+/* ── CUSTOM CURSOR ── */
+function drawCursor() {
+  const t = frame * 0.05;
+  ctx.save();
+  ctx.translate(mx, my);
+  for (let i = 0; i < 3; i++) {
+    const a = t + i * (Math.PI * 2 / 3);
+    const off = 5;
+    ctx.beginPath();
+    ctx.arc(Math.cos(a)*off, Math.sin(a)*off, 16 + i*5, 0, Math.PI*2);
+    ctx.strokeStyle = `rgba(200,168,75,${0.28 - i*0.08})`;
+    ctx.lineWidth = 0.7;
+    ctx.stroke();
+  }
+  ctx.beginPath();
+  ctx.arc(0, 0, 2.5, 0, Math.PI*2);
+  ctx.fillStyle = '#c8a84b';
+  ctx.fill();
+  ctx.restore();
+}
+
+/* ── MOUSE GLOW ── */
+function drawMouseGlow() {
+  const g = ctx.createRadialGradient(mx, my, 0, mx, my, 280);
+  g.addColorStop(0, 'rgba(200,168,75,0.045)');
+  g.addColorStop(0.5, 'rgba(200,168,75,0.012)');
+  g.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = g;
+  ctx.fillRect(0, 0, W, H);
+}
+
+/* ── WAVE LINES ── */
+function drawWaves() {
+  const t = frame * 0.008;
+  for (let w = 0; w < 3; w++) {
+    ctx.beginPath();
+    const yBase = H * (0.3 + w * 0.2);
+    const influence = (my / H - 0.5) * 60;
+    for (let x = 0; x <= W; x += 4) {
+      const wave1 = Math.sin(x * 0.008 + t + w) * (20 + influence);
+      const wave2 = Math.sin(x * 0.014 - t * 1.3) * 10;
+      const y = yBase + wave1 + wave2;
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = `rgba(200,168,75,${0.025 - w * 0.006})`;
+    ctx.lineWidth = 0.6;
+    ctx.stroke();
+  }
+}
+
+function init() {
+  particles = Array.from({length: 140}, () => new Particle());
+  rings = Array.from({length: 10}, () => new Ring());
+}
+init();
+
+function loop() {
+  frame++;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = '#0a0a0a';
+  ctx.fillRect(0, 0, W, H);
+
+  drawGrid();
+  drawWaves();
+  rings.forEach(r => { r.update(); r.draw(); });
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawConnections();
+  drawMouseGlow();
+  drawCursor();
+
+  requestAnimationFrame(loop);
+}
+loop();
+</script>
+</body>
+</html>
