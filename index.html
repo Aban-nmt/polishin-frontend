@@ -5,89 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="PoliShin — دستگاه حرفه‌ای پولیش لیوان و ظروف شیشه‌ای برای کافه‌ها و رستوران‌ها"/>
   <meta name="keywords" content="پولیش لیوان,دستگاه پولیش کافه,براق کردن لیوان,تجهیزات کافه,PoliShin"/>
+  <meta property="og:title" content="PoliShin | پولیش حرفه‌ای برای کافه شما"/>
+  <meta property="og:description" content="دستگاه پولیش لیوان با تکنولوژی گرما و چرخش هوشمند"/>
+  <meta property="og:type" content="website"/>
   <title>PoliShin | پولیش حرفه‌ای برای کافه شما</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
   <style>
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 5% 80px;
-      gap: 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 65% 50%, rgba(200,168,75,0.07) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 80%, rgba(192,192,192,0.04) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .hero-content { flex: 1; max-width: 560px; position: relative; z-index: 2; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.3);
-      color: var(--gold); padding: 5px 16px; border-radius: 100px;
-      font-size: 0.8rem; margin-bottom: 24px;
-    }
-    .hero-badge::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
-    .hero h1 { font-size: clamp(2.4rem,5vw,3.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
-    .hero h1 em { color: var(--gold); font-style: normal; }
-    .hero p { font-size: 1.05rem; color: var(--white2); font-weight: 300; line-height: 2; margin-bottom: 36px; }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-    .hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
-    .hero-img {
-      width: 420px; height: 420px;
-      border-radius: var(--radlg);
-      background: var(--black3);
-      border: 1px solid var(--gray2);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-      color: var(--gray); font-size: 0.82rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-img::before {
-      content: ''; position: absolute; inset: -1px; border-radius: var(--radlg);
-      background: linear-gradient(135deg, rgba(200,168,75,0.25), transparent, rgba(192,192,192,0.08));
-      pointer-events: none;
-    }
-    .hero-img .big-icon { font-size: 5rem; opacity: 0.1; }
-
-    /* why grid */
-    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .why-num { font-size: 2.8rem; font-weight: 900; color: rgba(200,168,75,0.1); line-height: 1; margin-bottom: 12px; }
-    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .why-card p { font-size: 0.85rem; color: var(--gray); font-weight: 300; line-height: 1.8; }
-
-    /* cta */
-    .cta-section {
-      padding: 100px 5%; text-align: center;
-      background: rgba(17,17,17,0.7); position: relative; overflow: hidden;
-    }
-    .cta-section::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(200,168,75,0.07), transparent 65%);
-    }
-    .cta-section h2 { font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 900; margin-bottom: 14px; position: relative; }
-    .cta-section p { color: var(--white2); font-size: 1rem; font-weight: 300; margin-bottom: 36px; position: relative; }
-
-    @media(max-width:900px){
-      .hero{flex-direction:column;padding:100px 5% 60px;}
-      .hero-img{width:100%;max-width:340px;height:280px;}
-      .why-grid{grid-template-columns:1fr;}
-    }
+    .hero{min-height:100vh;display:flex;align-items:center;padding:120px 5% 80px;gap:60px;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 65% 50%,rgba(200,168,75,0.07) 0%,transparent 60%);pointer-events:none;}
+    .hero-content{flex:1;max-width:560px;position:relative;z-index:2;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.3);color:var(--gold);padding:5px 16px;border-radius:100px;font-size:0.8rem;margin-bottom:24px;}
+    .hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+    .hero h1{font-size:clamp(2.4rem,5vw,3.8rem);font-weight:900;line-height:1.2;margin-bottom:20px;}
+    .hero h1 em{color:var(--gold);font-style:normal;}
+    .hero p{font-size:1.05rem;color:var(--white2);font-weight:300;line-height:2;margin-bottom:36px;}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+    .hero-visual{flex:1;display:flex;justify-content:center;align-items:center;position:relative;z-index:2;}
+    .hero-img{width:420px;height:420px;border-radius:var(--radlg);background:var(--black3);border:1px solid var(--gray2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--gray);font-size:0.82rem;position:relative;overflow:hidden;}
+    .hero-img::before{content:'';position:absolute;inset:-1px;border-radius:var(--radlg);background:linear-gradient(135deg,rgba(200,168,75,0.25),transparent);pointer-events:none;}
+    .hero-img .big-icon{font-size:5rem;opacity:0.1;}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .why-num{font-size:2.8rem;font-weight:900;color:rgba(200,168,75,0.1);line-height:1;margin-bottom:12px;}
+    .why-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;}
+    .why-card p{font-size:0.85rem;color:var(--gray);font-weight:300;line-height:1.8;}
+    .cta-section{padding:100px 5%;text-align:center;background:rgba(17,17,17,0.7);position:relative;overflow:hidden;}
+    .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(200,168,75,0.07),transparent 65%);}
+    .cta-section h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;margin-bottom:14px;position:relative;}
+    .cta-section p{color:var(--white2);font-size:1rem;font-weight:300;margin-bottom:36px;position:relative;}
+    .social-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+    .social-link{display:none;align-items:center;gap:7px;color:var(--white2);text-decoration:none;font-size:0.8rem;padding:7px 14px;border:1px solid var(--gray2);border-radius:8px;transition:var(--ease);}
+    .social-link:hover{border-color:var(--gold);color:var(--gold);}
+    @media(max-width:900px){.hero{flex-direction:column;padding:100px 5% 60px;}.hero-img{width:100%;max-width:340px;height:280px;}.why-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
-
 <canvas id="bg-canvas"></canvas>
 <nav>
   <a href="index.html" class="logo">Poli<span>Shin</span></a>
@@ -103,34 +58,31 @@
   <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">تکنولوژی جدید پولیش ظروف</div>
-    <h1>کافه شما لایق<br/><em>براق‌ترین</em> لیوان‌هاست</h1>
-    <p>PoliShin با ترکیب گرما و چرخش هوشمند، لیوان‌ها و ظروف شیشه‌ای شما را در کمترین زمان، بهداشتی و کاملاً براق می‌کند.</p>
+    <div class="hero-badge"><span data-cms="hero_badge">تکنولوژی جدید پولیش ظروف</span></div>
+    <h1><span data-cms="hero_title_1">کافه شما لایق</span><br/><em data-cms="hero_title_2">براق‌ترین لیوان‌هاست</em></h1>
+    <p data-cms="hero_description">PoliShin با ترکیب گرما و چرخش هوشمند، لیوان‌ها و ظروف شیشه‌ای شما را در کمترین زمان، بهداشتی و کاملاً براق می‌کند.</p>
     <div class="hero-actions">
       <a href="pages/contact.html" class="btn btn-gold">ثبت سفارش ←</a>
       <a href="pages/product.html" class="btn btn-outline">بیشتر بدانید</a>
     </div>
   </div>
   <div class="hero-visual">
-    <div class="hero-img">
+    <div class="hero-img" data-cms="hero_image">
       <div class="big-icon">📷</div>
       <span>تصویر محصول</span>
     </div>
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-item"><span class="stat-num" data-count="5" data-suffix=" میله">0</span><div class="stat-label">پولیش همزمان</div></div>
-  <div class="stat-item"><span class="stat-num" data-count="360" data-suffix="°">0</span><div class="stat-label">چرخش کامل</div></div>
-  <div class="stat-item"><span class="stat-num" data-count="100" data-suffix="٪">0</span><div class="stat-label">بهداشتی</div></div>
-  <div class="stat-item"><span class="stat-num" data-count="30" data-suffix="٪">0</span><div class="stat-label">ارزان‌تر از رقبا</div></div>
+  <div class="stat-item"><span class="stat-num" data-cms="stat_1_number">۵ میله</span><div class="stat-label" data-cms="stat_1_label">پولیش همزمان</div></div>
+  <div class="stat-item"><span class="stat-num" data-cms="stat_2_number">۳۶۰°</span><div class="stat-label" data-cms="stat_2_label">چرخش کامل</div></div>
+  <div class="stat-item"><span class="stat-num" data-cms="stat_3_number">۱۰۰٪</span><div class="stat-label" data-cms="stat_3_label">بهداشتی</div></div>
+  <div class="stat-item"><span class="stat-num" data-cms="stat_4_number">۳۰٪</span><div class="stat-label" data-cms="stat_4_label">ارزان‌تر از رقبا</div></div>
 </div>
 
-<!-- WHY -->
 <section class="section">
   <div class="section-header fade-up">
     <span class="eyebrow">چرا PoliShin؟</span>
@@ -147,34 +99,32 @@
   </div>
 </section>
 
-<!-- LATEST ARTICLES -->
-<section class="section section-alt" id="articles-preview">
+<section class="section section-alt">
   <div class="section-header fade-up">
     <span class="eyebrow">مقالات</span>
     <h2 class="section-title">آخرین مطالب</h2>
     <p class="section-sub">راهنما و نکات حرفه‌ای برای کافه‌داران</p>
   </div>
-  <div id="home-articles">
-    <div class="loading"><div class="spinner"></div></div>
-  </div>
-  <div style="margin-top:36px;" class="fade-up">
-    <a href="pages/articles.html" class="btn btn-outline">مشاهده همه مقالات ←</a>
-  </div>
+  <div id="home-articles"><div class="loading"><div class="spinner"></div></div></div>
+  <div style="margin-top:36px;" class="fade-up"><a href="pages/articles.html" class="btn btn-outline">مشاهده همه مقالات ←</a></div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
   <h2 class="fade-up">آماده‌اید کافه‌تان را ارتقا دهید؟</h2>
   <p class="fade-up delay-1">همین الان سفارش ثبت کنید و اولین قدم را بردارید</p>
   <a href="pages/contact.html" class="btn btn-gold fade-up delay-2">ثبت سفارش ←</a>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-about">
       <a href="index.html" class="logo">Poli<span>Shin</span></a>
       <p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" data-cms="contact_instagram">📸 اینستاگرام</a>
+        <a href="#" class="social-link" data-cms="contact_telegram">✈️ تلگرام</a>
+        <a href="#" class="social-link" data-cms="contact_whatsapp">💬 واتساپ</a>
+      </div>
     </div>
     <div class="footer-col"><h4>صفحات</h4><ul>
       <li><a href="pages/product.html">محصول</a></li>
@@ -195,34 +145,18 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/cms.js"></script>
 <script>
-const API = 'https://polishin-backend-production.up.railway.app/api';
-async function loadHomeArticles() {
-  const el = document.getElementById('home-articles');
-  try {
-    const res = await fetch(`${API}/articles?limit=3`);
-    const json = await res.json();
-    if (!json.success || !json.data.length) {
-      el.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>به زودی مقالات اضافه می‌شود</p></div>';
-      return;
-    }
-    el.innerHTML = `<div class="articles-grid">${json.data.map(a => `
-      <a href="pages/article.html?slug=${a.slug}" class="article-card fade-up">
-        <div class="article-thumb">${a.image ? `<img src="${'https://polishin-backend-production.up.railway.app'}${a.image}" alt="${a.title}"/>` : '<span>تصویر مقاله</span>'}</div>
-        <div class="article-body">
-          <span class="article-tag">${a.category}</span>
-          <h3>${a.title}</h3>
-          <p>${a.summary.substring(0,100)}...</p>
-          <div class="article-meta">
-            <span class="article-date">${new Date(a.createdAt).toLocaleDateString('fa-IR')}</span>
-            <span class="article-read">${a.readTime} ←</span>
-          </div>
-        </div>
-      </a>`).join('')}</div>`;
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-  } catch {
-    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>به زودی مقالات اضافه می‌شود</p></div>';
-  }
+const _API='https://polishin-backend-production.up.railway.app/api';
+const _BACKEND='https://polishin-backend-production.up.railway.app';
+async function loadHomeArticles(){
+  const el=document.getElementById('home-articles');
+  try{
+    const res=await fetch(`${_API}/articles?limit=3`);
+    const json=await res.json();
+    if(!json.success||!json.data.length){el.innerHTML='<div class="empty-state"><div class="empty-icon">📝</div><p>به زودی مقالات اضافه می‌شود</p></div>';return;}
+    el.innerHTML=`<div class="articles-grid">${json.data.map(a=>`<a href="pages/article.html?slug=${a.slug}" class="article-card fade-up"><div class="article-thumb">${a.image?`<img src="${_BACKEND}${a.image}" alt="${a.title}"/>`:'<span>تصویر مقاله</span>'}</div><div class="article-body"><span class="article-tag">${a.category}</span><h3>${a.title}</h3><p>${a.summary.substring(0,100)}...</p><div class="article-meta"><span class="article-date">${new Date(a.createdAt).toLocaleDateString('fa-IR')}</span><span class="article-read">${a.readTime} ←</span></div></div></a>`).join('')}</div>`;
+  }catch{el.innerHTML='<div class="empty-state"><div class="empty-icon">📝</div><p>به زودی مقالات اضافه می‌شود</p></div>';}
 }
 loadHomeArticles();
 </script>

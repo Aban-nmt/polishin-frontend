@@ -38,11 +38,11 @@
 <section class="section">
   <div class="contact-layout">
     <div class="fade-up">
-      <div class="contact-item"><div class="contact-icon">📞</div><div><h4>تلفن</h4><p>به زودی اضافه می‌شود</p></div></div>
-      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>ایمیل</h4><p>info@polishin.ir</p></div></div>
-      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>موقعیت</h4><p>تهران، ایران</p></div></div>
-      <div class="contact-item"><div class="contact-icon">💬</div><div><h4>ساعات پاسخگویی</h4><p>شنبه تا چهارشنبه — ۹ تا ۱۸</p></div></div>
-      <div class="contact-item"><div class="contact-icon">🚚</div><div><h4>ارسال</h4><p>سراسر ایران — پس از هماهنگی</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📞</div><div><h4>تلفن</h4><p data-cms="contact_phone">به زودی اضافه می‌شود</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>ایمیل</h4><p data-cms="contact_email">info@polishin.ir</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>موقعیت</h4><p data-cms="contact_address">تهران، ایران</p></div></div>
+      <div class="contact-item"><div class="contact-icon">💬</div><div><h4>ساعات پاسخگویی</h4><p data-cms="contact_hours">شنبه تا چهارشنبه — ۹ تا ۱۸</p></div></div>
+      <div class="contact-item"><div class="contact-icon">🚚</div><div><h4>ارسال</h4><p data-cms="contact_shipping">سراسر ایران — پس از هماهنگی</p></div></div>
     </div>
     <div class="form-card fade-up delay-2">
       <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--gray2);">فرم ثبت سفارش</h3>
@@ -71,6 +71,7 @@
   <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
 </footer>
 <script src="../js/main.js"></script>
+<script src="../js/cms.js"></script>
 <script>
 const API='https://polishin-backend-production.up.railway.app/api';
 document.getElementById('contact-form').addEventListener('submit',async(e)=>{

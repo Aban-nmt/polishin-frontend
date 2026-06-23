@@ -5,113 +5,100 @@
   <title>پنل مدیریت | PoliShin</title>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
   <style>
-    :root{--black:#0a0a0a;--black2:#111;--black3:#1a1a1a;--black4:#222;--gold:#c8a84b;--gold2:#e2c26a;--white:#f0f0f0;--white2:#ccc;--gray:#555;--gray2:#2a2a2a;--green:#2a7a4a;--red:#7a2a2a;}
+    :root{--black:#0a0a0a;--black2:#111;--black3:#1a1a1a;--black4:#222;--gold:#c8a84b;--gold2:#e2c26a;--white:#f0f0f0;--white2:#ccc;--gray:#555;--gray2:#2a2a2a;}
     *{margin:0;padding:0;box-sizing:border-box;}
     body{font-family:'Vazirmatn',sans-serif;background:var(--black);color:var(--white);direction:rtl;min-height:100vh;}
-    /* LOGIN */
-    .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--black);}
+    .login-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;}
     .login-box{background:var(--black2);border:1px solid var(--gray2);border-radius:16px;padding:48px 40px;width:100%;max-width:380px;text-align:center;}
-    .login-logo{font-size:2rem;font-weight:900;margin-bottom:8px;letter-spacing:1px;}
-    .login-logo span{color:var(--gold);}
-    .login-sub{font-size:0.85rem;color:var(--gray);margin-bottom:32px;}
-    .login-error{color:#e06060;font-size:0.82rem;margin-top:10px;display:none;}
-    /* LAYOUT */
-    .app{display:flex;min-height:100vh;display:none;}
-    .sidebar{width:240px;background:var(--black2);border-left:1px solid var(--gray2);display:flex;flex-direction:column;flex-shrink:0;}
-    .sidebar-header{padding:24px 20px;border-bottom:1px solid var(--gray2);}
-    .sidebar-logo{font-size:1.2rem;font-weight:900;letter-spacing:1px;}
-    .sidebar-logo span{color:var(--gold);}
-    .sidebar-sub{font-size:0.72rem;color:var(--gray);margin-top:4px;}
-    .sidebar-nav{padding:12px 0;flex:1;}
-    .nav-item{display:flex;align-items:center;gap:12px;padding:11px 20px;color:var(--gray);font-size:0.88rem;cursor:pointer;transition:.2s;border-right:3px solid transparent;user-select:none;}
-    .nav-item:hover,.nav-item.active{color:var(--white);background:rgba(200,168,75,0.06);border-right-color:var(--gold);}
-    .nav-item.active{color:var(--gold);}
-    .nav-icon{font-size:1rem;width:18px;text-align:center;}
-    .nav-badge{background:rgba(200,168,75,0.2);color:var(--gold);font-size:0.68rem;padding:2px 7px;border-radius:100px;margin-right:auto;}
-    .sidebar-footer{padding:16px 20px;border-top:1px solid var(--gray2);}
-    .logout-btn{width:100%;background:transparent;border:1px solid var(--gray2);color:var(--gray);padding:9px;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:0.82rem;cursor:pointer;transition:.2s;}
-    .logout-btn:hover{border-color:#e06060;color:#e06060;}
-    /* MAIN */
-    .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
-    .topbar{background:var(--black2);border-bottom:1px solid var(--gray2);padding:14px 28px;display:flex;align-items:center;justify-content:space-between;}
-    .topbar h1{font-size:1.05rem;font-weight:700;}
-    .topbar-info{font-size:0.78rem;color:var(--gray);}
-    .topbar-info span{color:var(--gold);}
-    .content{flex:1;padding:28px;overflow-y:auto;}
-    /* PANELS */
-    .panel{display:none;}.panel.active{display:block;}
-    /* DASHBOARD CARDS */
-    .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
-    .dash-card{background:var(--black3);border:1px solid var(--gray2);border-radius:12px;padding:22px;}
-    .dash-card-label{font-size:0.76rem;color:var(--gray);margin-bottom:8px;}
-    .dash-card-value{font-size:1.9rem;font-weight:900;color:var(--gold);}
-    .dash-card-sub{font-size:0.72rem;color:var(--gray);margin-top:4px;}
-    /* TABLE */
-    .tbl-wrap{background:var(--black3);border:1px solid var(--gray2);border-radius:12px;overflow:hidden;}
-    table{width:100%;border-collapse:collapse;}
-    th{background:var(--black4);padding:12px 16px;text-align:right;font-size:0.76rem;color:var(--gray);font-weight:500;border-bottom:1px solid var(--gray2);}
-    td{padding:12px 16px;font-size:0.82rem;color:var(--white2);border-bottom:1px solid rgba(42,42,42,0.4);}
-    tr:last-child td{border-bottom:none;}
-    tr:hover td{background:rgba(255,255,255,0.02);}
-    .badge{display:inline-block;padding:2px 10px;border-radius:100px;font-size:0.68rem;font-weight:500;}
-    .badge-gold{background:rgba(200,168,75,0.1);color:var(--gold);}
-    .badge-gray{background:rgba(85,85,85,0.15);color:var(--gray);}
-    .badge-green{background:rgba(42,122,74,0.2);color:#4caf50;}
-    .badge-red{background:rgba(122,42,42,0.2);color:#e06060;}
-    .action-btns{display:flex;gap:6px;}
-    .btn-sm{padding:4px 12px;border-radius:6px;font-size:0.74rem;font-family:'Vazirmatn',sans-serif;cursor:pointer;border:none;transition:.2s;}
-    .btn-edit{background:rgba(200,168,75,0.1);color:var(--gold);border:1px solid rgba(200,168,75,0.2);}
-    .btn-edit:hover{background:rgba(200,168,75,0.2);}
-    .btn-del{background:rgba(122,42,42,0.15);color:#e06060;border:1px solid rgba(122,42,42,0.25);}
-    .btn-del:hover{background:rgba(122,42,42,0.3);}
-    .btn-view{background:rgba(85,85,85,0.15);color:var(--white2);border:1px solid var(--gray2);}
-    /* FORM */
-    .form-card{background:var(--black3);border:1px solid var(--gray2);border-radius:12px;padding:28px;}
-    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    .form-group{display:flex;flex-direction:column;gap:7px;}
-    .form-group.full{grid-column:1/-1;}
-    label{font-size:0.78rem;font-weight:500;color:var(--white2);}
-    input,textarea,select{background:var(--black);border:1px solid var(--gray2);border-radius:8px;padding:10px 13px;color:var(--white);font-family:'Vazirmatn',sans-serif;font-size:0.84rem;direction:rtl;transition:.2s;width:100%;}
-    input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold);}
-    textarea{resize:vertical;min-height:130px;}
-    select option{background:var(--black2);}
-    .form-actions{display:flex;gap:10px;margin-top:20px;}
-    .btn-primary{background:var(--gold);color:var(--black);padding:10px 24px;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:0.86rem;font-weight:700;border:none;cursor:pointer;transition:.2s;}
-    .btn-primary:hover{background:var(--gold2);}
-    .btn-secondary{background:transparent;color:var(--white2);padding:10px 24px;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:0.86rem;border:1px solid var(--gray2);cursor:pointer;transition:.2s;}
-    .btn-secondary:hover{border-color:var(--white2);}
-    .form-msg{font-size:0.8rem;margin-top:12px;padding:10px 14px;border-radius:8px;display:none;}
-    .form-msg.success{background:rgba(42,122,74,0.15);color:#4caf50;border:1px solid rgba(42,122,74,0.3);}
-    .form-msg.error{background:rgba(122,42,42,0.15);color:#e06060;border:1px solid rgba(122,42,42,0.3);}
-    /* MESSAGES */
-    .msg-list{display:flex;flex-direction:column;gap:10px;}
-    .msg-card{background:var(--black3);border:1px solid var(--gray2);border-radius:10px;padding:18px 20px;}
-    .msg-card.unread{border-right:3px solid var(--gold);}
-    .msg-card.unread .msg-name{color:var(--gold);}
-    .msg-name{font-size:0.9rem;font-weight:700;margin-bottom:6px;}
-    .msg-text{font-size:0.82rem;color:var(--gray);line-height:1.7;margin-bottom:10px;}
-    .msg-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:0.73rem;color:var(--gray);}
-    .msg-actions{display:flex;gap:8px;margin-top:12px;}
-    /* UPLOAD */
-    .img-upload-area{border:2px dashed var(--gray2);border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:.2s;}
-    .img-upload-area:hover{border-color:var(--gold);}
-    .img-preview{width:100%;max-height:160px;object-fit:cover;border-radius:8px;margin-top:10px;}
-    /* LOADING */
-    .loading{display:flex;align-items:center;justify-content:center;padding:48px;}
-    .spinner{width:32px;height:32px;border:3px solid var(--gray2);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .empty{text-align:center;padding:48px;color:var(--gray);font-size:0.88rem;}
-    .panel-title{font-size:0.95rem;font-weight:700;margin-bottom:18px;color:var(--white);}
-    /* LOGIN FORM */
+    .login-logo{font-size:2rem;font-weight:900;margin-bottom:8px;letter-spacing:1px;}.login-logo span{color:var(--gold);}
+    .login-sub{font-size:0.85rem;color:var(--gray);margin-bottom:28px;}
     .login-box input{width:100%;background:var(--black);border:1px solid var(--gray2);border-radius:8px;padding:11px 14px;color:var(--white);font-family:'Vazirmatn',sans-serif;font-size:0.9rem;direction:rtl;margin-bottom:12px;transition:.2s;}
     .login-box input:focus{outline:none;border-color:var(--gold);}
-    .login-btn{width:100%;background:var(--gold);color:var(--black);padding:12px;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;margin-top:6px;transition:.2s;}
+    .login-btn{width:100%;background:var(--gold);color:var(--black);padding:12px;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:0.95rem;font-weight:700;border:none;cursor:pointer;transition:.2s;}
     .login-btn:hover{background:var(--gold2);}
+    .login-error{color:#e06060;font-size:0.8rem;margin-top:8px;display:none;}
+    .app{display:none;flex-direction:row;min-height:100vh;}
+    .sidebar{width:240px;background:var(--black2);border-left:1px solid var(--gray2);display:flex;flex-direction:column;flex-shrink:0;}
+    .sidebar-header{padding:22px 18px;border-bottom:1px solid var(--gray2);}
+    .sidebar-logo{font-size:1.2rem;font-weight:900;letter-spacing:1px;}.sidebar-logo span{color:var(--gold);}
+    .sidebar-sub{font-size:0.7rem;color:var(--gray);margin-top:3px;}
+    .sidebar-nav{padding:10px 0;flex:1;overflow-y:auto;}
+    .nav-group{padding:14px 18px 6px;font-size:0.65rem;color:var(--gray);letter-spacing:2px;text-transform:uppercase;}
+    .nav-item{display:flex;align-items:center;gap:10px;padding:10px 18px;color:var(--gray);font-size:0.85rem;cursor:pointer;transition:.2s;border-right:3px solid transparent;user-select:none;}
+    .nav-item:hover,.nav-item.active{color:var(--white);background:rgba(200,168,75,0.06);border-right-color:var(--gold);}
+    .nav-item.active{color:var(--gold);}
+    .nav-badge{background:rgba(200,168,75,0.2);color:var(--gold);font-size:0.65rem;padding:1px 7px;border-radius:100px;margin-right:auto;}
+    .sidebar-footer{padding:14px 18px;border-top:1px solid var(--gray2);}
+    .logout-btn{width:100%;background:transparent;border:1px solid var(--gray2);color:var(--gray);padding:8px;border-radius:8px;font-family:'Vazirmatn',sans-serif;font-size:0.8rem;cursor:pointer;transition:.2s;}
+    .logout-btn:hover{border-color:#e06060;color:#e06060;}
+    .main{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+    .topbar{background:var(--black2);border-bottom:1px solid var(--gray2);padding:13px 24px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;}
+    .topbar h1{font-size:1rem;font-weight:700;}
+    .server-status{font-size:0.75rem;color:var(--gray);}.server-status.online{color:#4caf50;}
+    .content{flex:1;padding:24px;overflow-y:auto;}
+    .panel{display:none;}.panel.active{display:block;}
+    .dash-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+    .dash-card{background:var(--black3);border:1px solid var(--gray2);border-radius:10px;padding:18px;}
+    .dash-card-label{font-size:0.72rem;color:var(--gray);margin-bottom:6px;}
+    .dash-card-value{font-size:1.7rem;font-weight:900;color:var(--gold);}
+    .dash-card-sub{font-size:0.68rem;color:var(--gray);margin-top:3px;}
+    .tbl-wrap{background:var(--black3);border:1px solid var(--gray2);border-radius:10px;overflow:hidden;margin-bottom:16px;}
+    .tbl-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--gray2);}
+    .tbl-title{font-size:0.88rem;font-weight:700;}
+    table{width:100%;border-collapse:collapse;}
+    th{background:var(--black4);padding:10px 14px;text-align:right;font-size:0.72rem;color:var(--gray);font-weight:500;border-bottom:1px solid var(--gray2);}
+    td{padding:10px 14px;font-size:0.8rem;color:var(--white2);border-bottom:1px solid rgba(42,42,42,0.4);}
+    tr:last-child td{border-bottom:none;}tr:hover td{background:rgba(255,255,255,0.015);}
+    .badge{display:inline-block;padding:2px 9px;border-radius:100px;font-size:0.65rem;font-weight:500;}
+    .badge-gold{background:rgba(200,168,75,0.1);color:var(--gold);}.badge-gray{background:rgba(85,85,85,0.15);color:var(--gray);}
+    .badge-green{background:rgba(42,122,74,0.15);color:#4caf50;}.badge-red{background:rgba(122,42,42,0.15);color:#e06060;}
+    .action-btns{display:flex;gap:5px;}
+    .btn-sm{padding:4px 10px;border-radius:6px;font-size:0.7rem;font-family:'Vazirmatn',sans-serif;cursor:pointer;border:none;transition:.2s;}
+    .btn-edit{background:rgba(200,168,75,0.1);color:var(--gold);border:1px solid rgba(200,168,75,0.2);}.btn-edit:hover{background:rgba(200,168,75,0.2);}
+    .btn-del{background:rgba(122,42,42,0.12);color:#e06060;border:1px solid rgba(122,42,42,0.2);}.btn-del:hover{background:rgba(122,42,42,0.25);}
+    .btn-read{background:rgba(85,85,85,0.12);color:var(--white2);border:1px solid var(--gray2);}
+    .form-card{background:var(--black3);border:1px solid var(--gray2);border-radius:10px;padding:22px;margin-bottom:16px;}
+    .form-card-title{font-size:0.9rem;font-weight:700;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--gray2);color:var(--gold);}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    .form-group{display:flex;flex-direction:column;gap:6px;}.form-group.full{grid-column:1/-1;}
+    label{font-size:0.75rem;font-weight:500;color:var(--white2);}
+    input,textarea,select{background:var(--black);border:1px solid var(--gray2);border-radius:7px;padding:9px 12px;color:var(--white);font-family:'Vazirmatn',sans-serif;font-size:0.82rem;direction:rtl;transition:.2s;width:100%;}
+    input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold);}
+    textarea{resize:vertical;min-height:90px;}select option{background:var(--black2);}
+    .form-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+    .btn-primary{background:var(--gold);color:var(--black);padding:9px 22px;border-radius:7px;font-family:'Vazirmatn',sans-serif;font-size:0.84rem;font-weight:700;border:none;cursor:pointer;transition:.2s;}.btn-primary:hover{background:var(--gold2);}
+    .btn-secondary{background:transparent;color:var(--white2);padding:9px 22px;border-radius:7px;font-family:'Vazirmatn',sans-serif;font-size:0.84rem;border:1px solid var(--gray2);cursor:pointer;transition:.2s;}.btn-secondary:hover{border-color:var(--white2);}
+    .form-msg{font-size:0.76rem;margin-top:10px;padding:9px 13px;border-radius:7px;display:none;}
+    .form-msg.success{background:rgba(42,122,74,0.12);color:#4caf50;border:1px solid rgba(42,122,74,0.25);}
+    .form-msg.error{background:rgba(122,42,42,0.12);color:#e06060;border:1px solid rgba(122,42,42,0.25);}
+    .img-upload-area{border:2px dashed var(--gray2);border-radius:8px;padding:18px;text-align:center;cursor:pointer;transition:.2s;font-size:0.78rem;color:var(--gray);margin-bottom:12px;}
+    .img-upload-area:hover{border-color:var(--gold);color:var(--gold);}
+    .img-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+    .img-item{position:relative;border-radius:8px;overflow:hidden;border:1px solid var(--gray2);aspect-ratio:16/9;background:var(--black4);display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:0.72rem;}
+    .img-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+    .img-item-footer{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.75);padding:5px 8px;display:flex;align-items:center;justify-content:space-between;}
+    .img-item-label{font-size:0.65rem;color:var(--white2);}
+    .img-item-upload{background:var(--gold);color:var(--black);border:none;border-radius:4px;padding:2px 8px;font-size:0.65rem;font-family:'Vazirmatn',sans-serif;cursor:pointer;font-weight:700;}
+    .msg-card{background:var(--black3);border:1px solid var(--gray2);border-radius:10px;padding:16px 18px;margin-bottom:8px;}
+    .msg-card.unread{border-right:3px solid var(--gold);}
+    .msg-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+    .msg-name{font-size:0.88rem;font-weight:700;}
+    .msg-text{font-size:0.8rem;color:var(--gray);line-height:1.7;margin-bottom:8px;}
+    .msg-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:0.71rem;color:var(--gray);}
+    .msg-actions{display:flex;gap:7px;margin-top:10px;}
+    .loading{display:flex;align-items:center;justify-content:center;padding:40px;}
+    .spinner{width:28px;height:28px;border:2px solid var(--gray2);border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .empty{text-align:center;padding:40px;color:var(--gray);font-size:0.84rem;}
+    .seo-preview{background:var(--black);border:1px solid var(--gray2);border-radius:8px;padding:14px;margin-top:12px;}
+    .seo-preview-title{color:#8ab4f8;font-size:0.88rem;margin-bottom:3px;}
+    .seo-preview-url{color:#34a853;font-size:0.72rem;margin-bottom:5px;}
+    .seo-preview-desc{color:#bdc1c6;font-size:0.76rem;line-height:1.5;}
+    @media(max-width:768px){.sidebar{width:200px;}.dash-grid{grid-template-columns:1fr 1fr;}.form-grid{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div class="login-wrap" id="loginScreen">
   <div class="login-box">
     <div class="login-logo">Poli<span>Shin</span></div>
@@ -119,103 +106,202 @@
     <input type="text" id="loginUser" placeholder="نام کاربری"/>
     <input type="password" id="loginPass" placeholder="رمز عبور"/>
     <p class="login-error" id="loginError">نام کاربری یا رمز اشتباه است</p>
-    <button class="login-btn" id="loginBtn" onclick="doLogin()">ورود به پنل</button>
+    <button class="login-btn" onclick="doLogin()">ورود به پنل</button>
   </div>
 </div>
 
-<!-- APP -->
 <div class="app" id="app">
   <aside class="sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-logo">Poli<span>Shin</span></div>
-      <div class="sidebar-sub">پنل مدیریت</div>
-    </div>
+    <div class="sidebar-header"><div class="sidebar-logo">Poli<span>Shin</span></div><div class="sidebar-sub">پنل مدیریت</div></div>
     <nav class="sidebar-nav">
-      <div class="nav-item active" onclick="showPanel('dashboard',this)"><span class="nav-icon">📊</span>داشبورد</div>
-      <div class="nav-item" onclick="showPanel('articles',this)"><span class="nav-icon">📝</span>مقالات</div>
-      <div class="nav-item" onclick="showPanel('newArticle',this)"><span class="nav-icon">✏️</span>مقاله جدید</div>
-      <div class="nav-item" onclick="showPanel('messages',this)"><span class="nav-icon">💬</span>پیام‌ها<span class="nav-badge" id="unread-badge" style="display:none">0</span></div>
-      <div class="nav-item" onclick="showPanel('settings',this)"><span class="nav-icon">⚙️</span>تنظیمات</div>
+      <div class="nav-group">عمومی</div>
+      <div class="nav-item active" onclick="showP('dashboard',this)">📊 داشبورد</div>
+      <div class="nav-group">محتوا</div>
+      <div class="nav-item" onclick="showP('articles',this)">📝 مقالات</div>
+      <div class="nav-item" onclick="showP('newArticle',this)">✏️ مقاله جدید</div>
+      <div class="nav-item" onclick="showP('messages',this)">💬 پیام‌ها <span class="nav-badge" id="unread-badge" style="display:none">0</span></div>
+      <div class="nav-group">ویرایش سایت</div>
+      <div class="nav-item" onclick="showP('cms_hero',this)">🏠 صفحه اصلی</div>
+      <div class="nav-item" onclick="showP('cms_media',this)">📷 تصاویر</div>
+      <div class="nav-item" onclick="showP('cms_specs',this)">⚙️ مشخصات فنی</div>
+      <div class="nav-item" onclick="showP('cms_about',this)">🏢 درباره ما</div>
+      <div class="nav-item" onclick="showP('cms_contact',this)">📞 اطلاعات تماس</div>
+      <div class="nav-item" onclick="showP('cms_seo',this)">🔍 SEO</div>
+      <div class="nav-group">حساب</div>
+      <div class="nav-item" onclick="showP('pw',this)">🔐 رمز عبور</div>
     </nav>
-    <div class="sidebar-footer">
-      <button class="logout-btn" onclick="doLogout()">خروج از پنل</button>
-    </div>
+    <div class="sidebar-footer"><button class="logout-btn" onclick="doLogout()">خروج از پنل</button></div>
   </aside>
 
   <div class="main">
     <div class="topbar">
       <h1 id="panelTitle">داشبورد</h1>
-      <div class="topbar-info">خوش آمدید، <span id="adminName">admin</span></div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span class="server-status" id="srvStatus">● بررسی...</span>
+        <span style="font-size:0.75rem;color:var(--gray);">خوش آمدید، <span id="adminName" style="color:var(--gold)">admin</span></span>
+      </div>
     </div>
     <div class="content">
 
-      <!-- DASHBOARD -->
       <div class="panel active" id="panel-dashboard">
         <div class="dash-grid">
-          <div class="dash-card"><div class="dash-card-label">مقالات منتشر شده</div><div class="dash-card-value" id="stat-articles">—</div><div class="dash-card-sub">در سایت نمایش داده می‌شود</div></div>
-          <div class="dash-card"><div class="dash-card-label">پیام‌های دریافتی</div><div class="dash-card-value" id="stat-messages">—</div><div class="dash-card-sub" id="stat-unread-sub">در حال بارگذاری...</div></div>
-          <div class="dash-card"><div class="dash-card-label">وضعیت سرور</div><div class="dash-card-value" style="font-size:1rem;color:#4caf50;" id="stat-server">● بررسی...</div><div class="dash-card-sub">Railway + MongoDB</div></div>
+          <div class="dash-card"><div class="dash-card-label">مقالات</div><div class="dash-card-value" id="d-art">—</div><div class="dash-card-sub">منتشر شده</div></div>
+          <div class="dash-card"><div class="dash-card-label">پیام‌ها</div><div class="dash-card-value" id="d-msg">—</div><div class="dash-card-sub" id="d-unread">—</div></div>
+          <div class="dash-card"><div class="dash-card-label">تنظیمات CMS</div><div class="dash-card-value" id="d-cms">—</div><div class="dash-card-sub">آیتم ذخیره شده</div></div>
+          <div class="dash-card"><div class="dash-card-label">سرور</div><div class="dash-card-value" style="font-size:1rem;" id="d-srv">● —</div><div class="dash-card-sub">Railway</div></div>
         </div>
-        <div class="panel-title">آخرین مقالات</div>
-        <div class="tbl-wrap"><table><thead><tr><th>عنوان</th><th>دسته‌بندی</th><th>تاریخ</th><th>وضعیت</th></tr></thead><tbody id="dash-articles-body"><tr><td colspan="4" class="empty">در حال بارگذاری...</td></tr></tbody></table></div>
+        <div class="tbl-wrap"><div class="tbl-header"><span class="tbl-title">آخرین مقالات</span></div>
+        <table><thead><tr><th>عنوان</th><th>دسته</th><th>تاریخ</th><th>وضعیت</th></tr></thead>
+        <tbody id="d-art-body"><tr><td colspan="4" class="empty">در حال بارگذاری...</td></tr></tbody></table></div>
       </div>
 
-      <!-- ARTICLES LIST -->
       <div class="panel" id="panel-articles">
-        <div class="panel-title">مدیریت مقالات</div>
-        <div class="tbl-wrap"><table><thead><tr><th>عنوان</th><th>دسته‌بندی</th><th>تاریخ</th><th>بازدید</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="articles-body"><tr><td colspan="6" class="empty">در حال بارگذاری...</td></tr></tbody></table></div>
+        <div class="tbl-wrap"><div class="tbl-header"><span class="tbl-title">مدیریت مقالات</span>
+        <button class="btn-primary" onclick="showP('newArticle',document.querySelectorAll('.nav-item')[3])">+ مقاله جدید</button></div>
+        <table><thead><tr><th>عنوان</th><th>دسته</th><th>تاریخ</th><th>بازدید</th><th>وضعیت</th><th>عملیات</th></tr></thead>
+        <tbody id="arts-body"><tr><td colspan="6" class="empty">در حال بارگذاری...</td></tr></tbody></table></div>
       </div>
 
-      <!-- NEW / EDIT ARTICLE -->
       <div class="panel" id="panel-newArticle">
-        <div class="panel-title" id="article-form-title">مقاله جدید</div>
         <div class="form-card">
-          <input type="hidden" id="edit-article-id"/>
+          <div class="form-card-title" id="art-form-title">✏️ مقاله جدید</div>
+          <input type="hidden" id="edit-id"/>
           <div class="form-grid">
-            <div class="form-group full"><label>عنوان مقاله *</label><input type="text" id="art-title" placeholder="عنوان مقاله را بنویسید..."/></div>
-            <div class="form-group"><label>دسته‌بندی</label>
-              <select id="art-cat">
-                <option>بهداشت کافه</option><option>تجهیزات</option><option>نکات حرفه‌ای</option><option>آموزش</option>
-              </select>
-            </div>
+            <div class="form-group full"><label>عنوان *</label><input type="text" id="art-title" placeholder="عنوان مقاله..."/></div>
+            <div class="form-group"><label>دسته‌بندی</label><select id="art-cat"><option>بهداشت کافه</option><option>تجهیزات</option><option>نکات حرفه‌ای</option><option>آموزش</option></select></div>
             <div class="form-group"><label>زمان مطالعه</label><input type="text" id="art-time" placeholder="مثلاً: ۳ دقیقه"/></div>
-            <div class="form-group"><label>وضعیت</label><select id="art-status"><option value="published">منتشر شده</option><option value="draft">پیش‌نویس</option></select></div>
+            <div class="form-group"><label>وضعیت</label><select id="art-status"><option value="published">منتشر</option><option value="draft">پیش‌نویس</option></select></div>
             <div class="form-group">
-              <label>تصویر مقاله</label>
-              <div class="img-upload-area" onclick="document.getElementById('art-image').click()">
-                <div>📷 کلیک کنید یا فایل را اینجا بکشید</div>
-                <div style="font-size:0.75rem;color:var(--gray);margin-top:6px;">JPG, PNG یا WebP — حداکثر ۵ مگابایت</div>
-                <img id="img-preview" class="img-preview" style="display:none;"/>
-              </div>
-              <input type="file" id="art-image" accept="image/*" style="display:none;" onchange="previewImage(this)"/>
+              <label>تصویر</label>
+              <div class="img-upload-area" onclick="document.getElementById('art-img').click()">📷 کلیک برای آپلود<br/><small style="color:var(--gray)">JPG,PNG,WebP — حداکثر 5MB</small></div>
+              <input type="file" id="art-img" accept="image/*" style="display:none" onchange="prevArtImg(this)"/>
+              <img id="art-img-prev" style="display:none;width:100%;max-height:130px;object-fit:cover;border-radius:7px;border:1px solid var(--gray2);"/>
             </div>
-            <div class="form-group full"><label>خلاصه مقاله *</label><textarea id="art-summary" placeholder="یک پاراگراف کوتاه توضیح درباره مقاله..." style="min-height:90px;"></textarea></div>
-            <div class="form-group full"><label>متن کامل مقاله *</label><textarea id="art-body" style="min-height:220px;" placeholder="متن اصلی مقاله را اینجا بنویسید...&#10;&#10;برای پاراگراف جدید یک خط خالی بگذارید."></textarea></div>
+            <div class="form-group full"><label>خلاصه *</label><textarea id="art-summary" placeholder="یک پاراگراف کوتاه..."></textarea></div>
+            <div class="form-group full"><label>متن کامل *</label><textarea id="art-body" style="min-height:200px;" placeholder="متن اصلی مقاله..."></textarea></div>
           </div>
           <div class="form-actions">
-            <button class="btn-primary" onclick="saveArticle(false)">انتشار مقاله</button>
-            <button class="btn-secondary" onclick="saveArticle(true)">ذخیره پیش‌نویس</button>
-            <button class="btn-secondary" onclick="clearArticleForm()">پاک کردن</button>
+            <button class="btn-primary" onclick="saveArt(false)">انتشار</button>
+            <button class="btn-secondary" onclick="saveArt(true)">پیش‌نویس</button>
+            <button class="btn-secondary" onclick="clearArt()">پاک کردن</button>
           </div>
           <div class="form-msg" id="art-msg"></div>
         </div>
       </div>
 
-      <!-- MESSAGES -->
       <div class="panel" id="panel-messages">
-        <div class="panel-title">پیام‌های دریافتی</div>
-        <div id="messages-list"><div class="loading"><div class="spinner"></div></div></div>
+        <div id="msgs-wrap"><div class="loading"><div class="spinner"></div></div></div>
       </div>
 
-      <!-- SETTINGS -->
-      <div class="panel" id="panel-settings">
-        <div class="panel-title">تنظیمات</div>
-        <div class="form-card" style="max-width:500px;">
-          <h3 style="font-size:0.9rem;font-weight:700;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--gray2);">تغییر رمز عبور</h3>
-          <div class="form-group" style="margin-bottom:14px;"><label>رمز فعلی</label><input type="password" id="cur-pass"/></div>
-          <div class="form-group" style="margin-bottom:14px;"><label>رمز جدید (حداقل ۸ کاراکتر)</label><input type="password" id="new-pass"/></div>
-          <div class="form-group" style="margin-bottom:14px;"><label>تکرار رمز جدید</label><input type="password" id="new-pass2"/></div>
-          <button class="btn-primary" onclick="changePassword()">تغییر رمز عبور</button>
+      <div class="panel" id="panel-cms_hero">
+        <div class="form-card">
+          <div class="form-card-title">🏠 صفحه اصلی</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>متن بج</label><input type="text" id="hero_badge"/></div>
+            <div class="form-group"><label>خط اول عنوان</label><input type="text" id="hero_title_1"/></div>
+            <div class="form-group"><label>خط دوم عنوان (طلایی)</label><input type="text" id="hero_title_2"/></div>
+            <div class="form-group full"><label>توضیحات</label><textarea id="hero_description" style="min-height:80px;"></textarea></div>
+            <div class="form-group"><label>آمار ۱ — عدد</label><input type="text" id="stat_1_number"/></div>
+            <div class="form-group"><label>آمار ۱ — توضیح</label><input type="text" id="stat_1_label"/></div>
+            <div class="form-group"><label>آمار ۲ — عدد</label><input type="text" id="stat_2_number"/></div>
+            <div class="form-group"><label>آمار ۲ — توضیح</label><input type="text" id="stat_2_label"/></div>
+            <div class="form-group"><label>آمار ۳ — عدد</label><input type="text" id="stat_3_number"/></div>
+            <div class="form-group"><label>آمار ۳ — توضیح</label><input type="text" id="stat_3_label"/></div>
+            <div class="form-group"><label>آمار ۴ — عدد</label><input type="text" id="stat_4_number"/></div>
+            <div class="form-group"><label>آمار ۴ — توضیح</label><input type="text" id="stat_4_label"/></div>
+          </div>
+          <div class="form-actions"><button class="btn-primary" onclick="saveCMS('hero')">ذخیره</button></div>
+          <div class="form-msg" id="hero-msg"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-cms_media">
+        <div class="form-card">
+          <div class="form-card-title">📷 تصاویر سایت</div>
+          <div class="img-grid" id="img-grid"></div>
+          <input type="file" id="img-file-input" accept="image/*" style="display:none"/>
+          <div class="form-msg" id="media-msg" style="margin-top:14px;"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-cms_specs">
+        <div class="form-card">
+          <div class="form-card-title">⚙️ مشخصات فنی</div>
+          <div class="form-grid">
+            <div class="form-group"><label>تعداد میله‌ها</label><input type="text" id="spec_poles"/></div>
+            <div class="form-group"><label>میله مرکزی</label><input type="text" id="spec_center"/></div>
+            <div class="form-group"><label>چیدمان میله‌ها</label><input type="text" id="spec_layout"/></div>
+            <div class="form-group"><label>جنس نخ</label><input type="text" id="spec_thread"/></div>
+            <div class="form-group"><label>سیستم گرمایش</label><input type="text" id="spec_heating"/></div>
+            <div class="form-group"><label>نمایشگر</label><input type="text" id="spec_display"/></div>
+            <div class="form-group"><label>رابط کاربری</label><input type="text" id="spec_ui"/></div>
+            <div class="form-group"><label>کاربرد</label><input type="text" id="spec_usage"/></div>
+            <div class="form-group full"><label>ظروف مناسب</label><input type="text" id="spec_vessels"/></div>
+          </div>
+          <div class="form-actions"><button class="btn-primary" onclick="saveCMS('specs')">ذخیره</button></div>
+          <div class="form-msg" id="specs-msg"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-cms_about">
+        <div class="form-card">
+          <div class="form-card-title">🏢 درباره ما</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>عنوان</label><input type="text" id="about_title"/></div>
+            <div class="form-group full"><label>پاراگراف اول</label><textarea id="about_p1"></textarea></div>
+            <div class="form-group full"><label>پاراگراف دوم</label><textarea id="about_p2"></textarea></div>
+            <div class="form-group full"><label>پاراگراف سوم</label><textarea id="about_p3"></textarea></div>
+          </div>
+          <div class="form-actions"><button class="btn-primary" onclick="saveCMS('about')">ذخیره</button></div>
+          <div class="form-msg" id="about-msg"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-cms_contact">
+        <div class="form-card">
+          <div class="form-card-title">📞 اطلاعات تماس</div>
+          <div class="form-grid">
+            <div class="form-group"><label>شماره تلفن</label><input type="text" id="contact_phone"/></div>
+            <div class="form-group"><label>ایمیل</label><input type="email" id="contact_email"/></div>
+            <div class="form-group"><label>آدرس</label><input type="text" id="contact_address"/></div>
+            <div class="form-group"><label>ساعات کاری</label><input type="text" id="contact_hours"/></div>
+            <div class="form-group"><label>اینستاگرام (لینک)</label><input type="url" id="contact_instagram" placeholder="https://instagram.com/..."/></div>
+            <div class="form-group"><label>تلگرام (لینک)</label><input type="url" id="contact_telegram" placeholder="https://t.me/..."/></div>
+            <div class="form-group full"><label>واتساپ (لینک)</label><input type="url" id="contact_whatsapp" placeholder="https://wa.me/..."/></div>
+          </div>
+          <div class="form-actions"><button class="btn-primary" onclick="saveCMS('contact')">ذخیره</button></div>
+          <div class="form-msg" id="contact-msg"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-cms_seo">
+        <div class="form-card">
+          <div class="form-card-title">🔍 SEO</div>
+          <div class="form-grid">
+            <div class="form-group full"><label>عنوان سایت (Title Tag)</label><input type="text" id="seo_site_title" oninput="updatePrev()"/></div>
+            <div class="form-group full"><label>توضیحات متا — حداکثر ۱۶۰ کاراکتر</label><textarea id="seo_site_description" style="min-height:70px;" oninput="updatePrev()"></textarea></div>
+            <div class="form-group full"><label>کلمات کلیدی (با کاما جدا کنید)</label><input type="text" id="seo_keywords"/></div>
+            <div class="form-group"><label>عنوان Open Graph</label><input type="text" id="seo_og_title"/></div>
+            <div class="form-group"><label>توضیحات Open Graph</label><input type="text" id="seo_og_description"/></div>
+          </div>
+          <div class="seo-preview">
+            <div style="font-size:0.7rem;color:var(--gray);margin-bottom:8px;">پیش‌نمایش در گوگل:</div>
+            <div class="seo-preview-title" id="prev-title">PoliShin</div>
+            <div class="seo-preview-url">https://aban-nmt.github.io/polishin-frontend/</div>
+            <div class="seo-preview-desc" id="prev-desc">توضیحات سایت...</div>
+          </div>
+          <div class="form-actions"><button class="btn-primary" onclick="saveCMS('seo')">ذخیره SEO</button></div>
+          <div class="form-msg" id="seo-msg"></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-pw">
+        <div class="form-card" style="max-width:440px;">
+          <div class="form-card-title">🔐 تغییر رمز عبور</div>
+          <div class="form-group" style="margin-bottom:12px;"><label>رمز فعلی</label><input type="password" id="cur-pass"/></div>
+          <div class="form-group" style="margin-bottom:12px;"><label>رمز جدید (حداقل ۸ کاراکتر)</label><input type="password" id="new-pass"/></div>
+          <div class="form-group" style="margin-bottom:12px;"><label>تکرار رمز جدید</label><input type="password" id="new-pass2"/></div>
+          <div class="form-actions"><button class="btn-primary" onclick="changePass()">تغییر رمز</button></div>
           <div class="form-msg" id="pass-msg"></div>
         </div>
       </div>
@@ -225,300 +311,161 @@
 </div>
 
 <script>
-const API = 'https://polishin-backend-production.up.railway.app/api';
-let TOKEN = localStorage.getItem('ps_token') || '';
-let editingId = null;
+const API='https://polishin-backend-production.up.railway.app/api';
+const BACKEND='https://polishin-backend-production.up.railway.app';
+let TOKEN=localStorage.getItem('ps_token')||'';
+let editingId=null;
+let uploadKey='',uploadGroup='',uploadLabel='';
 
-// ── AUTH ──
-async function doLogin() {
-  const btn = document.getElementById('loginBtn');
-  const err = document.getElementById('loginError');
-  err.style.display = 'none';
-  btn.textContent = 'در حال ورود...'; btn.disabled = true;
-  try {
-    const res = await fetch(`${API}/auth/login`, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        username: document.getElementById('loginUser').value,
-        password: document.getElementById('loginPass').value,
-      })
-    });
-    const json = await res.json();
-    if (json.success) {
-      TOKEN = json.token;
-      localStorage.setItem('ps_token', TOKEN);
-      document.getElementById('adminName').textContent = json.admin.username;
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('app').style.display = 'flex';
-      loadDashboard();
-    } else {
-      err.style.display = 'block';
-    }
-  } catch {
-    err.textContent = 'خطا در اتصال به سرور';
-    err.style.display = 'block';
-  }
-  btn.textContent = 'ورود به پنل'; btn.disabled = false;
+const IMGS=[
+  {key:'hero_image',label:'تصویر هیرو',group:'media'},
+  {key:'product_image_main',label:'تصویر اصلی محصول',group:'media'},
+  {key:'product_image_side',label:'نمای جانبی',group:'media'},
+  {key:'product_image_top',label:'نمای بالا',group:'media'},
+  {key:'product_image_poles',label:'تصویر میله‌ها',group:'media'},
+  {key:'about_image',label:'تصویر درباره ما',group:'media'},
+  {key:'seo_og_image',label:'Open Graph',group:'seo'},
+];
+
+const CMS_FIELDS={
+  hero:['hero_badge','hero_title_1','hero_title_2','hero_description','stat_1_number','stat_1_label','stat_2_number','stat_2_label','stat_3_number','stat_3_label','stat_4_number','stat_4_label'],
+  specs:['spec_poles','spec_center','spec_layout','spec_thread','spec_heating','spec_display','spec_ui','spec_usage','spec_vessels'],
+  about:['about_title','about_p1','about_p2','about_p3'],
+  contact:['contact_phone','contact_email','contact_address','contact_hours','contact_instagram','contact_telegram','contact_whatsapp'],
+  seo:['seo_site_title','seo_site_description','seo_keywords','seo_og_title','seo_og_description'],
+};
+
+const CMS_GROUPS={hero_badge:'hero',hero_title_1:'hero',hero_title_2:'hero',hero_description:'hero',stat_1_number:'stats',stat_1_label:'stats',stat_2_number:'stats',stat_2_label:'stats',stat_3_number:'stats',stat_3_label:'stats',stat_4_number:'stats',stat_4_label:'stats',spec_poles:'specs',spec_center:'specs',spec_layout:'specs',spec_thread:'specs',spec_heating:'specs',spec_display:'specs',spec_ui:'specs',spec_usage:'specs',spec_vessels:'specs',about_title:'about',about_p1:'about',about_p2:'about',about_p3:'about',contact_phone:'contact',contact_email:'contact',contact_address:'contact',contact_hours:'contact',contact_instagram:'contact',contact_telegram:'contact',contact_whatsapp:'contact',seo_site_title:'seo',seo_site_description:'seo',seo_keywords:'seo',seo_og_title:'seo',seo_og_description:'seo'};
+
+async function doLogin(){
+  const err=document.getElementById('loginError');err.style.display='none';
+  try{
+    const r=await fetch(`${API}/auth/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:document.getElementById('loginUser').value,password:document.getElementById('loginPass').value})});
+    const j=await r.json();
+    if(j.success){TOKEN=j.token;localStorage.setItem('ps_token',TOKEN);document.getElementById('adminName').textContent=j.admin.username;document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='flex';init();}
+    else{err.style.display='block';}
+  }catch{err.textContent='خطا در اتصال به سرور';err.style.display='block';}
 }
 
-function doLogout() {
-  TOKEN = '';
-  localStorage.removeItem('ps_token');
-  document.getElementById('app').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('loginUser').value = '';
-  document.getElementById('loginPass').value = '';
+function doLogout(){TOKEN='';localStorage.removeItem('ps_token');location.reload();}
+document.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+if(TOKEN){fetch(`${API}/auth/me`,{headers:{Authorization:`Bearer ${TOKEN}`}}).then(r=>r.json()).then(j=>{if(j.success){document.getElementById('adminName').textContent=j.admin.username;document.getElementById('loginScreen').style.display='none';document.getElementById('app').style.display='flex';init();}else{TOKEN='';localStorage.removeItem('ps_token');}}).catch(()=>{});}
+
+const H=()=>({Authorization:`Bearer ${TOKEN}`,'Content-Type':'application/json'});
+
+async function init(){loadDash();checkSrv();loadCMS_fields();buildImgGrid();}
+
+async function checkSrv(){
+  try{const r=await fetch(`${API}/health`);const j=await r.json();const el=document.getElementById('srvStatus');if(j.success){el.textContent='● آنلاین';el.className='server-status online';}document.getElementById('d-srv').textContent=j.success?'● آنلاین':'● آفلاین';}catch{}
 }
 
-document.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
-
-// Auto-login if token exists
-if (TOKEN) {
-  fetch(`${API}/auth/me`, {headers:{Authorization:`Bearer ${TOKEN}`}})
-    .then(r=>r.json()).then(j=>{
-      if (j.success) {
-        document.getElementById('adminName').textContent = j.admin.username;
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('app').style.display = 'flex';
-        loadDashboard();
-      } else { TOKEN=''; localStorage.removeItem('ps_token'); }
-    }).catch(()=>{ TOKEN=''; localStorage.removeItem('ps_token'); });
-}
-
-const headers = () => ({Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json'});
-
-// ── PANEL NAV ──
-const titles = {dashboard:'داشبورد',articles:'مدیریت مقالات',newArticle:'مقاله جدید',messages:'پیام‌های دریافتی',settings:'تنظیمات'};
-function showPanel(name, el) {
+const titles={dashboard:'داشبورد',articles:'مقالات',newArticle:'مقاله جدید',messages:'پیام‌ها',cms_hero:'صفحه اصلی',cms_media:'تصاویر',cms_specs:'مشخصات فنی',cms_about:'درباره ما',cms_contact:'اطلاعات تماس',cms_seo:'SEO',pw:'رمز عبور'};
+function showP(name,el){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
-  if (el) el.classList.add('active');
-  document.getElementById('panelTitle').textContent = titles[name]||name;
-  if (name==='articles') loadArticlesList();
-  if (name==='messages') loadMessages();
-  if (name==='dashboard') loadDashboard();
-  if (name==='newArticle' && !editingId) clearArticleForm();
+  const p=document.getElementById('panel-'+name);if(p)p.classList.add('active');
+  if(el)el.classList.add('active');
+  document.getElementById('panelTitle').textContent=titles[name]||name;
+  if(name==='articles')loadArts();
+  if(name==='messages')loadMsgs();
+  if(name==='dashboard')loadDash();
+  if(name==='newArticle'&&!editingId)clearArt();
 }
 
-// ── DASHBOARD ──
-async function loadDashboard() {
-  try {
-    const [artRes, msgRes, healthRes] = await Promise.all([
-      fetch(`${API}/articles/admin/all`, {headers:headers()}),
-      fetch(`${API}/messages`, {headers:headers()}),
-      fetch(`${API}/health`),
-    ]);
-    const arts = await artRes.json();
-    const msgs = await msgRes.json();
-    const health = await healthRes.json();
-
-    document.getElementById('stat-articles').textContent = arts.total || 0;
-    document.getElementById('stat-messages').textContent = msgs.total || 0;
-    document.getElementById('stat-unread-sub').textContent = `${msgs.unreadCount||0} پیام خوانده نشده`;
-    document.getElementById('stat-server').textContent = health.success ? '● آنلاین' : '● آفلاین';
-
-    if (msgs.unreadCount > 0) {
-      const badge = document.getElementById('unread-badge');
-      badge.textContent = msgs.unreadCount;
-      badge.style.display = 'inline';
-    }
-
-    if (arts.data?.length) {
-      document.getElementById('dash-articles-body').innerHTML = arts.data.slice(0,5).map(a=>`
-        <tr>
-          <td>${a.title}</td>
-          <td><span class="badge badge-gold">${a.category}</span></td>
-          <td>${new Date(a.createdAt).toLocaleDateString('fa-IR')}</td>
-          <td><span class="badge ${a.status==='published'?'badge-green':'badge-gray'}">${a.status==='published'?'منتشر':'پیش‌نویس'}</span></td>
-        </tr>`).join('');
-    } else {
-      document.getElementById('dash-articles-body').innerHTML = '<tr><td colspan="4" class="empty">هنوز مقاله‌ای ندارید</td></tr>';
-    }
-  } catch(e) {
-    console.error(e);
-  }
+async function loadDash(){
+  try{
+    const [a,m,s]=await Promise.all([fetch(`${API}/articles/admin/all`,{headers:H()}).then(r=>r.json()),fetch(`${API}/messages`,{headers:H()}).then(r=>r.json()),fetch(`${API}/settings`).then(r=>r.json())]);
+    document.getElementById('d-art').textContent=a.total||0;
+    document.getElementById('d-msg').textContent=m.total||0;
+    document.getElementById('d-unread').textContent=`${m.unreadCount||0} خوانده نشده`;
+    document.getElementById('d-cms').textContent=Object.keys(s.data||{}).length;
+    if(m.unreadCount>0){const b=document.getElementById('unread-badge');b.textContent=m.unreadCount;b.style.display='inline';}
+    document.getElementById('d-art-body').innerHTML=a.data?.length?a.data.slice(0,5).map(x=>`<tr><td>${x.title}</td><td><span class="badge badge-gold">${x.category}</span></td><td>${new Date(x.createdAt).toLocaleDateString('fa-IR')}</td><td><span class="badge ${x.status==='published'?'badge-green':'badge-gray'}">${x.status==='published'?'منتشر':'پیش‌نویس'}</span></td></tr>`).join(''):'<tr><td colspan="4" class="empty">هنوز مقاله‌ای ندارید</td></tr>';
+  }catch(e){console.error(e);}
 }
 
-// ── ARTICLES ──
-async function loadArticlesList() {
-  document.getElementById('articles-body').innerHTML = '<tr><td colspan="6"><div class="loading"><div class="spinner"></div></div></td></tr>';
-  try {
-    const res = await fetch(`${API}/articles/admin/all`, {headers:headers()});
-    const json = await res.json();
-    if (!json.data?.length) {
-      document.getElementById('articles-body').innerHTML = '<tr><td colspan="6" class="empty">هنوز مقاله‌ای ندارید</td></tr>';
-      return;
-    }
-    document.getElementById('articles-body').innerHTML = json.data.map(a=>`
-      <tr>
-        <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.title}</td>
-        <td><span class="badge badge-gold">${a.category}</span></td>
-        <td>${new Date(a.createdAt).toLocaleDateString('fa-IR')}</td>
-        <td>${a.views}</td>
-        <td><span class="badge ${a.status==='published'?'badge-green':'badge-gray'}">${a.status==='published'?'منتشر':'پیش‌نویس'}</span></td>
-        <td>
-          <div class="action-btns">
-            <button class="btn-sm btn-edit" onclick="editArticle('${a._id}','${encodeURIComponent(a.title)}','${a.category}','${a.readTime||''}','${a.status}')">ویرایش</button>
-            <button class="btn-sm btn-del" onclick="deleteArticle('${a._id}')">حذف</button>
-          </div>
-        </td>
-      </tr>`).join('');
-  } catch { document.getElementById('articles-body').innerHTML = '<tr><td colspan="6" class="empty">خطا در بارگذاری</td></tr>'; }
+async function loadArts(){
+  document.getElementById('arts-body').innerHTML='<tr><td colspan="6"><div class="loading"><div class="spinner"></div></div></td></tr>';
+  try{const j=await fetch(`${API}/articles/admin/all`,{headers:H()}).then(r=>r.json());
+  document.getElementById('arts-body').innerHTML=j.data?.length?j.data.map(a=>`<tr><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${a.title}</td><td><span class="badge badge-gold">${a.category}</span></td><td>${new Date(a.createdAt).toLocaleDateString('fa-IR')}</td><td>${a.views}</td><td><span class="badge ${a.status==='published'?'badge-green':'badge-gray'}">${a.status==='published'?'منتشر':'پیش‌نویس'}</span></td><td><div class="action-btns"><button class="btn-sm btn-edit" onclick="editArt('${a._id}','${encodeURIComponent(a.title)}','${a.category}','${a.readTime||''}','${a.status}')">ویرایش</button><button class="btn-sm btn-del" onclick="delArt('${a._id}')">حذف</button></div></td></tr>`).join(''):'<tr><td colspan="6" class="empty">هنوز مقاله‌ای ندارید</td></tr>';}catch{document.getElementById('arts-body').innerHTML='<tr><td colspan="6" class="empty">خطا</td></tr>';}
 }
 
-function editArticle(id, title, cat, time, status) {
-  editingId = id;
-  document.getElementById('edit-article-id').value = id;
-  document.getElementById('art-title').value = decodeURIComponent(title);
-  document.getElementById('art-cat').value = cat;
-  document.getElementById('art-time').value = time;
-  document.getElementById('art-status').value = status;
-  document.getElementById('article-form-title').textContent = 'ویرایش مقاله';
-  showPanel('newArticle', document.querySelectorAll('.nav-item')[2]);
+function editArt(id,title,cat,time,status){editingId=id;document.getElementById('edit-id').value=id;document.getElementById('art-title').value=decodeURIComponent(title);document.getElementById('art-cat').value=cat;document.getElementById('art-time').value=time;document.getElementById('art-status').value=status;document.getElementById('art-form-title').textContent='✏️ ویرایش مقاله';showP('newArticle',document.querySelectorAll('.nav-item')[3]);}
+async function delArt(id){if(!confirm('حذف این مقاله؟'))return;await fetch(`${API}/articles/${id}`,{method:'DELETE',headers:H()});loadArts();}
+
+async function saveArt(draft){
+  const title=document.getElementById('art-title').value.trim();
+  const summary=document.getElementById('art-summary').value.trim();
+  const body=document.getElementById('art-body').value.trim();
+  const msg=document.getElementById('art-msg');
+  if(!title||!summary||!body){showMsg(msg,'error','⚠ عنوان، خلاصه و متن الزامی هستند');return;}
+  const fd=new FormData();fd.append('title',title);fd.append('summary',summary);fd.append('body',body);fd.append('category',document.getElementById('art-cat').value);fd.append('readTime',document.getElementById('art-time').value||'۳ دقیقه');fd.append('status',draft?'draft':'published');
+  const img=document.getElementById('art-img').files[0];if(img)fd.append('image',img);
+  try{const r=await fetch(editingId?`${API}/articles/${editingId}`:`${API}/articles`,{method:editingId?'PUT':'POST',headers:{Authorization:`Bearer ${TOKEN}`},body:fd});const j=await r.json();
+  if(j.success){showMsg(msg,'success',`✓ مقاله ${editingId?'ویرایش':'ذخیره'} شد`);if(!editingId)clearArt();editingId=null;}else showMsg(msg,'error',`⚠ ${j.message}`);}catch{showMsg(msg,'error','⚠ خطا');}
 }
 
-async function deleteArticle(id) {
-  if (!confirm('آیا از حذف این مقاله مطمئنید؟')) return;
-  try {
-    const res = await fetch(`${API}/articles/${id}`, {method:'DELETE', headers:headers()});
-    const json = await res.json();
-    if (json.success) loadArticlesList();
-    else alert('خطا در حذف');
-  } catch { alert('خطا در اتصال'); }
+function clearArt(){editingId=null;['edit-id','art-title','art-summary','art-body','art-time'].forEach(id=>document.getElementById(id).value='');document.getElementById('art-status').value='published';document.getElementById('art-img').value='';document.getElementById('art-img-prev').style.display='none';document.getElementById('art-form-title').textContent='✏️ مقاله جدید';document.getElementById('art-msg').style.display='none';}
+function prevArtImg(input){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{const img=document.getElementById('art-img-prev');img.src=e.target.result;img.style.display='block';};r.readAsDataURL(f);}
+
+async function loadMsgs(){
+  const el=document.getElementById('msgs-wrap');el.innerHTML='<div class="loading"><div class="spinner"></div></div>';
+  try{const j=await fetch(`${API}/messages`,{headers:H()}).then(r=>r.json());
+  el.innerHTML=j.data?.length?j.data.map(m=>`<div class="msg-card ${m.isRead?'':'unread'}"><div class="msg-top"><span class="msg-name">${m.name}</span>${!m.isRead?'<span class="badge badge-gold">جدید</span>':''}</div><div class="msg-text">${m.message||'(بدون پیام)'}</div><div class="msg-meta"><span>📞 ${m.phone}</span>${m.business?`<span>🏢 ${m.business}</span>`:''}<span>📅 ${new Date(m.createdAt).toLocaleDateString('fa-IR')}</span></div><div class="msg-actions">${!m.isRead?`<button class="btn-sm btn-read" onclick="markRead('${m._id}')">خوانده شد</button>`:''}<button class="btn-sm btn-del" onclick="delMsg('${m._id}')">حذف</button></div></div>`).join(''):'<div class="empty">هنوز پیامی دریافت نشده</div>';}catch{el.innerHTML='<div class="empty">خطا</div>';}
+}
+async function markRead(id){await fetch(`${API}/messages/${id}/read`,{method:'PUT',headers:H()});loadMsgs();}
+async function delMsg(id){if(!confirm('حذف؟'))return;await fetch(`${API}/messages/${id}`,{method:'DELETE',headers:H()});loadMsgs();}
+
+async function loadCMS_fields(){
+  try{const j=await fetch(`${API}/settings`).then(r=>r.json());if(!j.success)return;
+  Object.keys(j.data).forEach(k=>{const el=document.getElementById(k);if(el)el.value=j.data[k]||'';});
+  updateImgPreviews(j.data);updatePrev();}catch{}
 }
 
-async function saveArticle(isDraft) {
-  const title = document.getElementById('art-title').value.trim();
-  const summary = document.getElementById('art-summary').value.trim();
-  const body = document.getElementById('art-body').value.trim();
-  const msg = document.getElementById('art-msg');
-
-  if (!title || !summary || !body) {
-    showMsg(msg, 'error', '⚠ عنوان، خلاصه و متن مقاله الزامی هستند');
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('title', title);
-  formData.append('summary', summary);
-  formData.append('body', body);
-  formData.append('category', document.getElementById('art-cat').value);
-  formData.append('readTime', document.getElementById('art-time').value || '۳ دقیقه');
-  formData.append('status', isDraft ? 'draft' : 'published');
-
-  const imgFile = document.getElementById('art-image').files[0];
-  if (imgFile) formData.append('image', imgFile);
-
-  const isEdit = !!editingId;
-  const url = isEdit ? `${API}/articles/${editingId}` : `${API}/articles`;
-  const method = isEdit ? 'PUT' : 'POST';
-
-  try {
-    const res = await fetch(url, {
-      method,
-      headers: {Authorization: `Bearer ${TOKEN}`},
-      body: formData,
-    });
-    const json = await res.json();
-    if (json.success) {
-      showMsg(msg, 'success', `✓ مقاله با موفقیت ${isEdit?'ویرایش':'ذخیره'} شد`);
-      if (!isEdit) clearArticleForm();
-      editingId = null;
-    } else {
-      showMsg(msg, 'error', `⚠ ${json.message || 'خطا در ذخیره'}`);
-    }
-  } catch { showMsg(msg, 'error', '⚠ خطا در اتصال به سرور'); }
+async function saveCMS(group){
+  const fields=CMS_FIELDS[group]||[];
+  const settings=fields.map(k=>({key:k,value:document.getElementById(k)?.value||'',group:CMS_GROUPS[k]||group,label:k}));
+  const msg=document.getElementById(group+'-msg');
+  try{const r=await fetch(`${API}/settings`,{method:'PUT',headers:H(),body:JSON.stringify({settings})});const j=await r.json();
+  if(j.success)showMsg(msg,'success','✓ ذخیره شد — تغییرات در سایت اعمال می‌شود');else showMsg(msg,'error',`⚠ ${j.message}`);}catch{showMsg(msg,'error','⚠ خطا');}
 }
 
-function clearArticleForm() {
-  editingId = null;
-  document.getElementById('edit-article-id').value = '';
-  document.getElementById('art-title').value = '';
-  document.getElementById('art-summary').value = '';
-  document.getElementById('art-body').value = '';
-  document.getElementById('art-time').value = '';
-  document.getElementById('art-status').value = 'published';
-  document.getElementById('art-image').value = '';
-  document.getElementById('img-preview').style.display = 'none';
-  document.getElementById('article-form-title').textContent = 'مقاله جدید';
-  document.getElementById('art-msg').style.display = 'none';
+function buildImgGrid(){
+  const grid=document.getElementById('img-grid');
+  grid.innerHTML=IMGS.map(img=>`<div class="img-item" id="img-wrap-${img.key}"><span>${img.label}</span><div class="img-item-footer"><span class="img-item-label">${img.label}</span><button class="img-item-upload" onclick="triggerImg('${img.key}','${img.group}','${img.label}')">آپلود</button></div></div>`).join('');
 }
 
-function previewImage(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const img = document.getElementById('img-preview');
-    img.src = e.target.result;
-    img.style.display = 'block';
-  };
-  reader.readAsDataURL(file);
+function updateImgPreviews(data){
+  IMGS.forEach(img=>{if(data[img.key]){const wrap=document.getElementById('img-wrap-'+img.key);if(wrap){const existing=wrap.querySelector('img');if(!existing){const i=document.createElement('img');i.src=BACKEND+data[img.key];i.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';wrap.insertBefore(i,wrap.querySelector('.img-item-footer'));wrap.querySelector('span:first-child')?.remove();}}}});
 }
 
-// ── MESSAGES ──
-async function loadMessages() {
-  const el = document.getElementById('messages-list');
-  el.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
-  try {
-    const res = await fetch(`${API}/messages`, {headers:headers()});
-    const json = await res.json();
-    if (!json.data?.length) {
-      el.innerHTML = '<div class="empty">هنوز پیامی دریافت نشده</div>';
-      return;
-    }
-    el.innerHTML = '<div class="msg-list">' + json.data.map(m=>`
-      <div class="msg-card ${m.isRead?'':'unread'}" id="msg-${m._id}">
-        <div class="msg-name">${m.name} ${m.isRead?'':'<span class="badge badge-gold">جدید</span>'}</div>
-        <div class="msg-text">${m.message || '(بدون پیام)'}</div>
-        <div class="msg-meta">
-          <span>📞 ${m.phone}</span>
-          ${m.business?`<span>🏢 ${m.business}</span>`:''}
-          <span>📅 ${new Date(m.createdAt).toLocaleDateString('fa-IR')}</span>
-        </div>
-        <div class="msg-actions">
-          ${!m.isRead?`<button class="btn-sm btn-view" onclick="markRead('${m._id}')">علامت‌گذاری خوانده شد</button>`:''}
-          <button class="btn-sm btn-del" onclick="deleteMsg('${m._id}')">حذف</button>
-        </div>
-      </div>`).join('') + '</div>';
-  } catch { el.innerHTML = '<div class="empty">خطا در بارگذاری پیام‌ها</div>'; }
+function triggerImg(key,group,label){uploadKey=key;uploadGroup=group;uploadLabel=label;const input=document.getElementById('img-file-input');input.onchange=()=>uploadImg(input);input.click();}
+
+async function uploadImg(input){
+  const file=input.files[0];if(!file)return;
+  const msg=document.getElementById('media-msg');showMsg(msg,'success','⏳ در حال آپلود...');
+  const fd=new FormData();fd.append('image',file);fd.append('key',uploadKey);fd.append('group',uploadGroup);fd.append('label',uploadLabel);
+  try{const r=await fetch(`${API}/settings/upload-image`,{method:'POST',headers:{Authorization:`Bearer ${TOKEN}`},body:fd});const j=await r.json();
+  if(j.success){showMsg(msg,'success','✓ تصویر آپلود شد');const wrap=document.getElementById('img-wrap-'+uploadKey);if(wrap){let img=wrap.querySelector('img');if(!img){img=document.createElement('img');img.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';wrap.insertBefore(img,wrap.querySelector('.img-item-footer'));wrap.querySelector('span:first-child')?.remove();}img.src=BACKEND+j.url+'?t='+Date.now();}}else showMsg(msg,'error',`⚠ ${j.message}`);}catch{showMsg(msg,'error','⚠ خطا در آپلود');}
+  input.value='';
 }
 
-async function markRead(id) {
-  await fetch(`${API}/messages/${id}/read`, {method:'PUT', headers:headers()});
-  loadMessages();
+async function changePass(){
+  const c=document.getElementById('cur-pass').value,n=document.getElementById('new-pass').value,n2=document.getElementById('new-pass2').value,msg=document.getElementById('pass-msg');
+  if(n!==n2){showMsg(msg,'error','⚠ رمزهای جدید یکسان نیستند');return;}
+  if(n.length<8){showMsg(msg,'error','⚠ حداقل ۸ کاراکتر');return;}
+  try{const r=await fetch(`${API}/auth/password`,{method:'PUT',headers:H(),body:JSON.stringify({currentPassword:c,newPassword:n})});const j=await r.json();
+  if(j.success){showMsg(msg,'success','✓ رمز تغییر کرد');['cur-pass','new-pass','new-pass2'].forEach(id=>document.getElementById(id).value='');}else showMsg(msg,'error',`⚠ ${j.message}`);}catch{showMsg(msg,'error','⚠ خطا');}
 }
 
-async function deleteMsg(id) {
-  if (!confirm('حذف این پیام؟')) return;
-  await fetch(`${API}/messages/${id}`, {method:'DELETE', headers:headers()});
-  loadMessages();
+function updatePrev(){
+  const t=document.getElementById('seo_site_title');const d=document.getElementById('seo_site_description');
+  if(t)document.getElementById('prev-title').textContent=t.value||'PoliShin';
+  if(d)document.getElementById('prev-desc').textContent=d.value||'توضیحات سایت...';
 }
 
-// ── PASSWORD ──
-async function changePassword() {
-  const cur = document.getElementById('cur-pass').value;
-  const nw = document.getElementById('new-pass').value;
-  const nw2 = document.getElementById('new-pass2').value;
-  const msg = document.getElementById('pass-msg');
-  if (nw !== nw2) { showMsg(msg, 'error', '⚠ رمزهای جدید یکسان نیستند'); return; }
-  if (nw.length < 8) { showMsg(msg, 'error', '⚠ رمز جدید حداقل ۸ کاراکتر باشد'); return; }
-  try {
-    const res = await fetch(`${API}/auth/password`, {method:'PUT', headers:headers(), body:JSON.stringify({currentPassword:cur,newPassword:nw})});
-    const json = await res.json();
-    if (json.success) { showMsg(msg,'success','✓ رمز با موفقیت تغییر کرد'); document.getElementById('cur-pass').value=''; document.getElementById('new-pass').value=''; document.getElementById('new-pass2').value=''; }
-    else showMsg(msg,'error',`⚠ ${json.message}`);
-  } catch { showMsg(msg,'error','⚠ خطا در اتصال'); }
-}
-
-function showMsg(el, type, text) {
-  el.textContent = text;
-  el.className = `form-msg ${type}`;
-  el.style.display = 'block';
-  setTimeout(() => el.style.display='none', 4000);
-}
+function showMsg(el,type,text){el.textContent=text;el.className=`form-msg ${type}`;el.style.display='block';if(type==='success')setTimeout(()=>el.style.display='none',4000);}
 </script>
 </body>
 </html>

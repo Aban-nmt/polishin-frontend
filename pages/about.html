@@ -45,12 +45,12 @@
 </div>
 <section class="section">
   <div class="about-grid">
-    <div class="img-placeholder fade-up" style="aspect-ratio:4/3;"><div class="icon">📷</div><span>تصویر تیم</span></div>
+    <div class="img-placeholder fade-up" data-cms="about_image" style="aspect-ratio:4/3;"><div class="icon">📷</div><span>تصویر تیم</span></div>
     <div class="about-text fade-up delay-2">
-      <h2 class="section-title">ما چه کسانی هستیم؟</h2>
-      <p>PoliShin از یک ایده ساده متولد شد: چرا باید پولیش لیوان در کافه‌ها هنوز به روش دستی و غیربهداشتی انجام شود؟</p>
-      <p>ما یک تیم متخصص در تجهیزات کافه هستیم که سال‌هاست در صنعت F&B ایران فعالیت می‌کنیم. مشاهده مشکلات کافه‌داران ما را به ساخت این دستگاه ترغیب کرد.</p>
-      <p>هدف ما ساده است: ارائه محصولی با کیفیت بالا، قیمت مناسب، و خدمات پس از فروش قابل اعتماد به کافه‌داران سراسر ایران.</p>
+      <h2 class="section-title" data-cms="about_title">ما چه کسانی هستیم؟</h2>
+      <p data-cms="about_p1">PoliShin از یک ایده ساده متولد شد: چرا باید پولیش لیوان در کافه‌ها هنوز به روش دستی و غیربهداشتی انجام شود؟</p>
+      <p data-cms="about_p2">ما یک تیم متخصص در تجهیزات کافه هستیم که سال‌هاست در صنعت F&B ایران فعالیت می‌کنیم. مشاهده مشکلات کافه‌داران ما را به ساخت این دستگاه ترغیب کرد.</p>
+      <p data-cms="about_p3">هدف ما ساده است: ارائه محصولی با کیفیت بالا، قیمت مناسب، و خدمات پس از فروش قابل اعتماد به کافه‌داران سراسر ایران.</p>
       <a href="contact.html" class="btn btn-gold" style="margin-top:8px;">با ما در تماس باشید ←</a>
     </div>
   </div>
@@ -67,10 +67,10 @@
   <div class="section-header fade-up"><span class="eyebrow">تماس با ما</span><h2 class="section-title">راه‌های ارتباطی</h2></div>
   <div class="contact-grid">
     <div class="fade-up">
-      <div class="contact-item"><div class="contact-icon">📞</div><div><h4>تلفن</h4><p>به زودی اضافه می‌شود</p></div></div>
-      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>ایمیل</h4><p>info@polishin.ir</p></div></div>
-      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>موقعیت</h4><p>تهران، ایران</p></div></div>
-      <div class="contact-item"><div class="contact-icon">💬</div><div><h4>ساعات پاسخگویی</h4><p>شنبه تا چهارشنبه — ۹ تا ۱۸</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📞</div><div><h4>تلفن</h4><p data-cms="contact_phone">به زودی اضافه می‌شود</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>ایمیل</h4><p data-cms="contact_email">info@polishin.ir</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>موقعیت</h4><p data-cms="contact_address">تهران، ایران</p></div></div>
+      <div class="contact-item"><div class="contact-icon">💬</div><div><h4>ساعات پاسخگویی</h4><p data-cms="contact_hours">شنبه تا چهارشنبه — ۹ تا ۱۸</p></div></div>
     </div>
     <div class="fade-up delay-2">
       <div class="form-card">
@@ -94,6 +94,7 @@
   <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
 </footer>
 <script src="../js/main.js"></script>
+<script src="../js/cms.js"></script>
 <script>
 const API='https://polishin-backend-production.up.railway.app/api';
 document.getElementById('about-form').addEventListener('submit',async(e)=>{
