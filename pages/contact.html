@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تماس و سفارش | PoliShin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:start;}
+    .contact-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:24px;}
+    .contact-icon{width:48px;height:48px;border-radius:10px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .contact-item h4{font-size:0.92rem;font-weight:700;margin-bottom:4px;}
+    .contact-item p{font-size:0.88rem;color:var(--gray);font-weight:300;}
+    @media(max-width:900px){.contact-layout{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">Poli<span>Shin</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">خانه</a></li>
+    <li><a href="product.html">محصول</a></li>
+    <li><a href="features.html">مزایا</a></li>
+    <li><a href="specs.html">مشخصات فنی</a></li>
+    <li><a href="articles.html">مقالات</a></li>
+    <li><a href="about.html">درباره ما</a></li>
+    <li><a href="contact.html" class="nav-cta active">تماس و سفارش</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero fade-up">
+  <div class="eyebrow">تماس و سفارش</div>
+  <h1>ثبت <em>سفارش</em> و استعلام قیمت</h1>
+  <p>برای ثبت سفارش یا اطلاعات بیشتر با ما در تماس باشید</p>
+</div>
+<section class="section">
+  <div class="contact-layout">
+    <div class="fade-up">
+      <div class="contact-item"><div class="contact-icon">📞</div><div><h4>تلفن</h4><p>به زودی اضافه می‌شود</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>ایمیل</h4><p>info@polishin.ir</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>موقعیت</h4><p>تهران، ایران</p></div></div>
+      <div class="contact-item"><div class="contact-icon">💬</div><div><h4>ساعات پاسخگویی</h4><p>شنبه تا چهارشنبه — ۹ تا ۱۸</p></div></div>
+      <div class="contact-item"><div class="contact-icon">🚚</div><div><h4>ارسال</h4><p>سراسر ایران — پس از هماهنگی</p></div></div>
+    </div>
+    <div class="form-card fade-up delay-2">
+      <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--gray2);">فرم ثبت سفارش</h3>
+      <form id="contact-form">
+        <div class="form-group"><label>نام و نام خانوادگی *</label><input type="text" placeholder="مثلاً: علی احمدی" required/></div>
+        <div class="form-group"><label>شماره تماس *</label><input type="tel" placeholder="09xxxxxxxxx" required/></div>
+        <div class="form-group"><label>نوع کسب‌وکار</label>
+          <select>
+            <option value="">انتخاب کنید</option>
+            <option>کافه</option><option>رستوران</option><option>هتل</option><option>سایر</option>
+          </select>
+        </div>
+        <div class="form-group"><label>پیام یا سوال</label><textarea placeholder="توضیح بیشتر درباره سفارش یا سوال خود..."></textarea></div>
+        <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">ارسال و ثبت سفارش ←</button>
+        <p id="form-msg" style="margin-top:12px;font-size:0.82rem;display:none;text-align:center;"></p>
+      </form>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about"><a href="../index.html" class="logo">Poli<span>Shin</span></a><p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p></div>
+    <div class="footer-col"><h4>صفحات</h4><ul><li><a href="product.html">محصول</a></li><li><a href="features.html">مزایا</a></li><li><a href="articles.html">مقالات</a></li></ul></div>
+    <div class="footer-col"><h4>اطلاعات</h4><ul><li><a href="about.html">درباره ما</a></li><li><a href="contact.html">تماس</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
+</footer>
+<script src="../js/main.js"></script>
+<script>
+const API='https://polishin-backend-production.up.railway.app/api';
+document.getElementById('contact-form').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const btn=e.target.querySelector('button[type=submit]');
+  const msg=document.getElementById('form-msg');
+  const inputs=e.target.querySelectorAll('input,select,textarea');
+  btn.textContent='در حال ارسال...';btn.disabled=true;
+  try{
+    const res=await fetch(`${API}/messages`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:inputs[0].value,phone:inputs[1].value,business:inputs[2].value,message:inputs[3].value})});
+    const json=await res.json();
+    if(json.success){msg.style.color='#4caf50';msg.textContent='✓ پیام شما با موفقیت ارسال شد. به زودی با شما تماس می‌گیریم';e.target.reset();}
+    else throw new Error(json.message);
+  }catch{msg.style.color='#e06060';msg.textContent='⚠ خطا در ارسال. لطفاً دوباره تلاش کنید';}
+  msg.style.display='block';btn.textContent='ارسال و ثبت سفارش ←';btn.disabled=false;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>درباره ما | PoliShin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-bottom:80px;}
+    .about-text p{font-size:0.95rem;color:var(--white2);font-weight:300;line-height:2.1;margin-bottom:18px;}
+    .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .value-card{background:var(--black3);border:1px solid var(--gray2);border-radius:var(--radlg);padding:28px;text-align:center;transition:var(--ease);}
+    .value-card:hover{border-color:rgba(200,168,75,0.35);transform:translateY(-4px);}
+    .value-icon{font-size:2.2rem;margin-bottom:14px;}
+    .value-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;}
+    .value-card p{font-size:0.82rem;color:var(--gray);font-weight:300;line-height:1.7;}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+    .contact-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;}
+    .contact-icon{width:44px;height:44px;border-radius:10px;background:rgba(200,168,75,0.1);border:1px solid rgba(200,168,75,0.2);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+    .contact-item h4{font-size:0.9rem;font-weight:700;margin-bottom:4px;}
+    .contact-item p{font-size:0.85rem;color:var(--gray);font-weight:300;}
+    @media(max-width:900px){.about-grid,.contact-grid{grid-template-columns:1fr;}.values-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">Poli<span>Shin</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">خانه</a></li>
+    <li><a href="product.html">محصول</a></li>
+    <li><a href="features.html">مزایا</a></li>
+    <li><a href="specs.html">مشخصات فنی</a></li>
+    <li><a href="articles.html">مقالات</a></li>
+    <li><a href="about.html" class="active">درباره ما</a></li>
+    <li><a href="contact.html" class="nav-cta">تماس و سفارش</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero fade-up">
+  <div class="eyebrow">درباره ما</div>
+  <h1>داستان <em>PoliShin</em></h1>
+  <p>ما به این باور رسیدیم که هر کافه حرفه‌ای لایق بهترین ابزار است</p>
+</div>
+<section class="section">
+  <div class="about-grid">
+    <div class="img-placeholder fade-up" style="aspect-ratio:4/3;"><div class="icon">📷</div><span>تصویر تیم</span></div>
+    <div class="about-text fade-up delay-2">
+      <h2 class="section-title">ما چه کسانی هستیم؟</h2>
+      <p>PoliShin از یک ایده ساده متولد شد: چرا باید پولیش لیوان در کافه‌ها هنوز به روش دستی و غیربهداشتی انجام شود؟</p>
+      <p>ما یک تیم متخصص در تجهیزات کافه هستیم که سال‌هاست در صنعت F&B ایران فعالیت می‌کنیم. مشاهده مشکلات کافه‌داران ما را به ساخت این دستگاه ترغیب کرد.</p>
+      <p>هدف ما ساده است: ارائه محصولی با کیفیت بالا، قیمت مناسب، و خدمات پس از فروش قابل اعتماد به کافه‌داران سراسر ایران.</p>
+      <a href="contact.html" class="btn btn-gold" style="margin-top:8px;">با ما در تماس باشید ←</a>
+    </div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="section-header fade-up"><span class="eyebrow">ارزش‌های ما</span><h2 class="section-title">چه چیزی ما را متمایز می‌کند</h2></div>
+  <div class="values-grid">
+    <div class="value-card fade-up"><div class="value-icon">🎯</div><h3>کیفیت بی‌타협</h3><p>هرگز کیفیت را فدای قیمت نمی‌کنیم. هر دستگاه با دقت تست و کنترل می‌شود.</p></div>
+    <div class="value-card fade-up delay-1"><div class="value-icon">🤝</div><h3>خدمات پس از فروش</h3><p>تیم پشتیبانی ما همیشه در دسترس است. مشکل شما مشکل ماست.</p></div>
+    <div class="value-card fade-up delay-2"><div class="value-icon">💡</div><h3>نوآوری مستمر</h3><p>دائماً در حال بهبود محصول و توسعه ویژگی‌های جدید هستیم.</p></div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-header fade-up"><span class="eyebrow">تماس با ما</span><h2 class="section-title">راه‌های ارتباطی</h2></div>
+  <div class="contact-grid">
+    <div class="fade-up">
+      <div class="contact-item"><div class="contact-icon">📞</div><div><h4>تلفن</h4><p>به زودی اضافه می‌شود</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📧</div><div><h4>ایمیل</h4><p>info@polishin.ir</p></div></div>
+      <div class="contact-item"><div class="contact-icon">📍</div><div><h4>موقعیت</h4><p>تهران، ایران</p></div></div>
+      <div class="contact-item"><div class="contact-icon">💬</div><div><h4>ساعات پاسخگویی</h4><p>شنبه تا چهارشنبه — ۹ تا ۱۸</p></div></div>
+    </div>
+    <div class="fade-up delay-2">
+      <div class="form-card">
+        <form id="about-form">
+          <div class="form-group"><label>نام و نام خانوادگی</label><input type="text" placeholder="مثلاً: علی احمدی" required/></div>
+          <div class="form-group"><label>شماره تماس</label><input type="tel" placeholder="09xxxxxxxxx" required/></div>
+          <div class="form-group"><label>پیام</label><textarea placeholder="سوال یا پیام خود را بنویسید..."></textarea></div>
+          <button type="submit" class="btn btn-gold" style="width:100%;justify-content:center;">ارسال پیام ←</button>
+          <p id="form-msg" style="margin-top:12px;font-size:0.82rem;display:none;"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about"><a href="../index.html" class="logo">Poli<span>Shin</span></a><p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p></div>
+    <div class="footer-col"><h4>صفحات</h4><ul><li><a href="product.html">محصول</a></li><li><a href="features.html">مزایا</a></li><li><a href="articles.html">مقالات</a></li></ul></div>
+    <div class="footer-col"><h4>اطلاعات</h4><ul><li><a href="about.html">درباره ما</a></li><li><a href="contact.html">تماس</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
+</footer>
+<script src="../js/main.js"></script>
+<script>
+const API='https://polishin-backend-production.up.railway.app/api';
+document.getElementById('about-form').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  const msg=document.getElementById('form-msg');
+  btn.textContent='در حال ارسال...';btn.disabled=true;
+  const inputs=e.target.querySelectorAll('input,textarea');
+  try{
+    const res=await fetch(`${API}/messages`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:inputs[0].value,phone:inputs[1].value,message:inputs[2].value})});
+    const json=await res.json();
+    if(json.success){msg.style.color='#4caf50';msg.textContent='✓ پیام شما با موفقیت ارسال شد';e.target.reset();}
+    else throw new Error();
+  }catch{msg.style.color='#e06060';msg.textContent='⚠ خطا در ارسال. دوباره تلاش کنید';}
+  msg.style.display='block';btn.textContent='ارسال پیام ←';btn.disabled=false;
+});
+</script>
+</body>
+</html>

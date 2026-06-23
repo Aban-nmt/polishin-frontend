@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مزایا | PoliShin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .features-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+    .feature-card{background:var(--black3);border:1px solid var(--gray2);border-radius:var(--radlg);padding:36px 28px;transition:var(--ease);position:relative;overflow:hidden;}
+    .feature-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle at top right,rgba(200,168,75,0.1),transparent 70%);pointer-events:none;}
+    .feature-card:hover{border-color:rgba(200,168,75,0.4);transform:translateY(-4px);}
+    .f-num{font-size:3rem;font-weight:900;color:rgba(200,168,75,0.1);line-height:1;margin-bottom:16px;}
+    .f-icon{font-size:1.8rem;margin-bottom:14px;}
+    .feature-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;}
+    .feature-card p{font-size:0.88rem;color:var(--gray);font-weight:300;line-height:1.8;}
+    .compare-table{width:100%;border-collapse:collapse;margin-top:40px;}
+    .compare-table th{background:var(--black3);padding:14px 20px;text-align:right;font-size:0.82rem;color:var(--gray);border-bottom:1px solid var(--gray2);}
+    .compare-table td{padding:14px 20px;font-size:0.88rem;border-bottom:1px solid rgba(42,42,42,0.5);}
+    .compare-table tr:hover td{background:rgba(255,255,255,0.02);}
+    .check{color:#4caf50;font-size:1.1rem;}
+    .cross{color:#e06060;font-size:1.1rem;}
+    .highlight-col{color:var(--gold);font-weight:600;}
+    @media(max-width:900px){.features-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">Poli<span>Shin</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">خانه</a></li>
+    <li><a href="product.html">محصول</a></li>
+    <li><a href="features.html" class="active">مزایا</a></li>
+    <li><a href="specs.html">مشخصات فنی</a></li>
+    <li><a href="articles.html">مقالات</a></li>
+    <li><a href="about.html">درباره ما</a></li>
+    <li><a href="contact.html" class="nav-cta">تماس و سفارش</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero fade-up">
+  <div class="eyebrow">مزایا</div>
+  <h1>چرا <em>PoliShin</em>؟</h1>
+  <p>مزیت‌هایی که کافه شما را از رقبا متمایز می‌کند</p>
+</div>
+<section class="section">
+  <div class="features-grid">
+    <div class="feature-card fade-up"><div class="f-icon">🦠</div><div class="f-num">۰۱</div><h3>بهداشت تضمین‌شده</h3><p>برخلاف پولیش دستی که پارچه‌های آلوده باکتری منتقل می‌کنند، PoliShin فرآیند کاملاً مکانیکی و بهداشتی دارد.</p></div>
+    <div class="feature-card fade-up delay-1"><div class="f-icon">⚡</div><div class="f-num">۰۲</div><h3>سرعت فوق‌العاده</h3><p>در اوج شلوغی کافه، لیوان‌ها را سریع‌تر از هر روش دستی آماده می‌کند. زمان سرویس‌دهی کوتاه‌تر، مشتری راضی‌تر.</p></div>
+    <div class="feature-card fade-up delay-2"><div class="f-icon">🌡️</div><div class="f-num">۰۳</div><h3>کنترل دقیق دما</h3><p>LCD هوشمند دما را لحظه‌ای نمایش می‌دهد. کنترل کامل بدون هیچ حدس و گمانی. رابط لمسی بدون دکمه فیزیکی.</p></div>
+    <div class="feature-card fade-up delay-3"><div class="f-icon">🎯</div><div class="f-num">۰۴</div><h3>طراحی X هوشمند</h3><p>چیدمان ایکس ۴ میله اطراف میله مرکزی، پوشش کامل ۳۶۰ درجه لیوان را تضمین می‌کند. هیچ نقطه‌ای جا نمی‌ماند.</p></div>
+    <div class="feature-card fade-up"><div class="f-icon">💰</div><div class="f-num">۰۵</div><h3>قیمت رقابتی</h3><p>با قیمتی پایین‌تر از دستگاه‌های مشابه در بازار ایران، امکانات بیشتری دریافت می‌کنید. بهترین ارزش برای سرمایه.</p></div>
+    <div class="feature-card fade-up delay-1"><div class="f-icon">🍷</div><div class="f-num">۰۶</div><h3>مناسب همه ظروف</h3><p>لیوان، ماگ، استکان، گیلاس — PoliShin برای طیف گسترده‌ای از ظروف شیشه‌ای و سرامیکی طراحی شده است.</p></div>
+  </div>
+</section>
+<section class="section section-alt">
+  <div class="section-header fade-up"><span class="eyebrow">مقایسه</span><h2 class="section-title">PoliShin در مقابل روش‌های دیگر</h2></div>
+  <div class="fade-up" style="overflow-x:auto;">
+    <table class="compare-table">
+      <thead><tr><th>ویژگی</th><th class="highlight-col">PoliShin</th><th>پولیش دستی</th><th>رقبای موجود</th></tr></thead>
+      <tbody>
+        <tr><td>بهداشت</td><td class="check highlight-col">✓ کامل</td><td class="cross">✗ ناقص</td><td class="check">✓ نسبی</td></tr>
+        <tr><td>سرعت</td><td class="highlight-col check">✓ بالا</td><td class="cross">✗ کند</td><td class="check">✓ متوسط</td></tr>
+        <tr><td>نمایشگر LCD</td><td class="highlight-col check">✓ دارد</td><td class="cross">✗ ندارد</td><td class="cross">✗ اکثراً ندارد</td></tr>
+        <tr><td>کنترل لمسی</td><td class="highlight-col check">✓ دارد</td><td class="cross">✗ ندارد</td><td class="cross">✗ ندارد</td></tr>
+        <tr><td>قیمت مناسب</td><td class="highlight-col check">✓ ارزان‌تر</td><td class="check">✓ رایگان</td><td class="cross">✗ گران</td></tr>
+        <tr><td>یکنواختی نتیجه</td><td class="highlight-col check">✓ همیشه یکسان</td><td class="cross">✗ متغیر</td><td class="check">✓ خوب</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about"><a href="../index.html" class="logo">Poli<span>Shin</span></a><p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p></div>
+    <div class="footer-col"><h4>صفحات</h4><ul><li><a href="product.html">محصول</a></li><li><a href="features.html">مزایا</a></li><li><a href="specs.html">مشخصات فنی</a></li><li><a href="articles.html">مقالات</a></li></ul></div>
+    <div class="footer-col"><h4>اطلاعات</h4><ul><li><a href="about.html">درباره ما</a></li><li><a href="contact.html">تماس</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

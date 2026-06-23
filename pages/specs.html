@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مشخصات فنی | PoliShin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .specs-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+    .spec-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid var(--gray2);}
+    .spec-row:last-child{border-bottom:none;}
+    .spec-key{font-size:0.88rem;color:var(--gray);}
+    .spec-val{font-size:0.92rem;color:var(--white);font-weight:600;}
+    .spec-val.gold{color:var(--gold);}
+    @media(max-width:900px){.specs-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">Poli<span>Shin</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">خانه</a></li>
+    <li><a href="product.html">محصول</a></li>
+    <li><a href="features.html">مزایا</a></li>
+    <li><a href="specs.html" class="active">مشخصات فنی</a></li>
+    <li><a href="articles.html">مقالات</a></li>
+    <li><a href="about.html">درباره ما</a></li>
+    <li><a href="contact.html" class="nav-cta">تماس و سفارش</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
+</nav>
+<div class="page-hero fade-up">
+  <div class="eyebrow">مشخصات فنی</div>
+  <h1>جزئیات <em>دستگاه</em></h1>
+  <p>تمام اطلاعات فنی که باید بدانید</p>
+</div>
+<section class="section">
+  <div class="specs-grid">
+    <div class="img-placeholder fade-up" style="aspect-ratio:1;"><div class="icon">📷</div><span>تصویر فنی محصول</span></div>
+    <div class="fade-up delay-2">
+      <div class="spec-row"><span class="spec-key">تعداد میله‌ها</span><span class="spec-val gold">۵ میله</span></div>
+      <div class="spec-row"><span class="spec-key">میله مرکزی</span><span class="spec-val">نگهدارنده لیوان</span></div>
+      <div class="spec-row"><span class="spec-key">چیدمان میله‌های جانبی</span><span class="spec-val gold">X (ایکس) — ۴ میله</span></div>
+      <div class="spec-row"><span class="spec-key">جنس نخ پولیش</span><span class="spec-val">نخ مخصوص پولیش</span></div>
+      <div class="spec-row"><span class="spec-key">سیستم گرمایش</span><span class="spec-val gold">المنت داخلی</span></div>
+      <div class="spec-row"><span class="spec-key">نمایشگر</span><span class="spec-val">LCD — نمایش دما</span></div>
+      <div class="spec-row"><span class="spec-key">رابط کاربری</span><span class="spec-val gold">لمسی — بدون دکمه فیزیکی</span></div>
+      <div class="spec-row"><span class="spec-key">کاربرد</span><span class="spec-val">کافه، رستوران، هتل</span></div>
+      <div class="spec-row"><span class="spec-key">ظروف مناسب</span><span class="spec-val">لیوان، ماگ، استکان، گیلاس</span></div>
+      <a href="contact.html" class="btn btn-gold" style="margin-top:28px;">استعلام قیمت ←</a>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about"><a href="../index.html" class="logo">Poli<span>Shin</span></a><p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p></div>
+    <div class="footer-col"><h4>صفحات</h4><ul><li><a href="product.html">محصول</a></li><li><a href="features.html">مزایا</a></li><li><a href="specs.html">مشخصات فنی</a></li><li><a href="articles.html">مقالات</a></li></ul></div>
+    <div class="footer-col"><h4>اطلاعات</h4><ul><li><a href="about.html">درباره ما</a></li><li><a href="contact.html">تماس</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
+</footer>
+<script src="../js/main.js"></script>
+</body>
+</html>

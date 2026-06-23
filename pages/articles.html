@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="مقالات PoliShin — راهنما و نکات حرفه‌ای برای کافه‌داران"/>
+  <title>مقالات | PoliShin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <style>
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 40px;
+    }
+    .filter-btn {
+      background: transparent; border: 1px solid var(--gray2); color: var(--white2);
+      padding: 7px 18px; border-radius: 100px; font-family: 'Vazirmatn',sans-serif;
+      font-size: 0.82rem; cursor: pointer; transition: var(--ease);
+    }
+    .filter-btn:hover, .filter-btn.active { background: var(--gold); border-color: var(--gold); color: var(--black); font-weight: 700; }
+    .pagination { display: flex; justify-content: center; gap: 8px; margin-top: 48px; }
+    .page-btn {
+      width: 38px; height: 38px; border-radius: 8px; border: 1px solid var(--gray2);
+      background: transparent; color: var(--white2); font-family: 'Vazirmatn',sans-serif;
+      font-size: 0.85rem; cursor: pointer; transition: var(--ease);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .page-btn:hover, .page-btn.active { background: var(--gold); border-color: var(--gold); color: var(--black); font-weight: 700; }
+    .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<nav>
+  <a href="../index.html" class="logo">Poli<span>Shin</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">خانه</a></li>
+    <li><a href="product.html">محصول</a></li>
+    <li><a href="features.html">مزایا</a></li>
+    <li><a href="specs.html">مشخصات فنی</a></li>
+    <li><a href="articles.html" class="active">مقالات</a></li>
+    <li><a href="about.html">درباره ما</a></li>
+    <li><a href="contact.html" class="nav-cta">تماس و سفارش</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="page-hero">
+  <div class="eyebrow">مقالات</div>
+  <h1>آموزش و <em>راهنما</em></h1>
+  <p>مقالاتی که به شما کمک می‌کنند کافه بهتری داشته باشید</p>
+</div>
+
+<section class="section">
+  <div class="filter-bar">
+    <button class="filter-btn active" data-cat="">همه مقالات</button>
+    <button class="filter-btn" data-cat="بهداشت کافه">بهداشت کافه</button>
+    <button class="filter-btn" data-cat="تجهیزات">تجهیزات</button>
+    <button class="filter-btn" data-cat="نکات حرفه‌ای">نکات حرفه‌ای</button>
+    <button class="filter-btn" data-cat="آموزش">آموزش</button>
+  </div>
+
+  <div id="articles-container">
+    <div class="loading"><div class="spinner"></div></div>
+  </div>
+  <div id="pagination" class="pagination"></div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about"><a href="../index.html" class="logo">Poli<span>Shin</span></a><p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p></div>
+    <div class="footer-col"><h4>صفحات</h4><ul><li><a href="product.html">محصول</a></li><li><a href="features.html">مزایا</a></li><li><a href="articles.html">مقالات</a></li></ul></div>
+    <div class="footer-col"><h4>اطلاعات</h4><ul><li><a href="about.html">درباره ما</a></li><li><a href="contact.html">تماس</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><p>© ۱۴۰۳ PoliShin</p><p>ساخته شده با ❤️ برای کافه‌های ایران</p></div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+const API = 'https://polishin-backend-production.up.railway.app/api';
+const BACKEND = 'https://polishin-backend-production.up.railway.app';
+let currentPage = 1, currentCat = '', totalPages = 1;
+
+async function loadArticles(page=1, cat='') {
+  const el = document.getElementById('articles-container');
+  el.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+  try {
+    let url = `${API}/articles?page=${page}&limit=9`;
+    if (cat) url += `&category=${encodeURIComponent(cat)}`;
+    const res = await fetch(url);
+    const json = await res.json();
+    if (!json.success || !json.data.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>مقاله‌ای در این دسته‌بندی یافت نشد</p></div>';
+      document.getElementById('pagination').innerHTML = '';
+      return;
+    }
+    totalPages = json.pages;
+    el.innerHTML = `<div class="articles-grid">${json.data.map(a => `
+      <a href="article.html?slug=${a.slug}" class="article-card fade-up">
+        <div class="article-thumb">${a.image ? `<img src="${BACKEND}${a.image}" alt="${a.title}"/>` : '<span>تصویر مقاله</span>'}</div>
+        <div class="article-body">
+          <span class="article-tag">${a.category}</span>
+          <h3>${a.title}</h3>
+          <p>${a.summary.substring(0,100)}...</p>
+          <div class="article-meta">
+            <span class="article-date">${new Date(a.createdAt).toLocaleDateString('fa-IR')}</span>
+            <span class="article-read">${a.readTime} ←</span>
+          </div>
+        </div>
+      </a>`).join('')}</div>`;
+    document.querySelectorAll('.fade-up').forEach(el => {
+      const obs = new IntersectionObserver(e => { if(e[0].isIntersecting) e[0].target.classList.add('visible'); },{threshold:0.1});
+      obs.observe(el);
+    });
+    renderPagination(json.pages, page);
+  } catch {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">⚠️</div><p>خطا در بارگذاری مقالات</p></div>';
+  }
+}
+
+function renderPagination(total, current) {
+  const el = document.getElementById('pagination');
+  if (total <= 1) { el.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="changePage(${current-1})" ${current===1?'disabled':''}>›</button>`;
+  for (let i=1; i<=total; i++) html += `<button class="page-btn ${i===current?'active':''}" onclick="changePage(${i})">${i}</button>`;
+  html += `<button class="page-btn" onclick="changePage(${current+1})" ${current===total?'disabled':''}>‹</button>`;
+  el.innerHTML = html;
+}
+
+function changePage(p) {
+  if (p<1||p>totalPages) return;
+  currentPage = p;
+  loadArticles(p, currentCat);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = btn.dataset.cat;
+    currentPage = 1;
+    loadArticles(1, currentCat);
+  });
+});
+
+loadArticles();
+</script>
+</body>
+</html>

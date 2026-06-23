@@ -3,406 +3,191 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="PoliShin — دستگاه حرفه‌ای پولیش لیوان و ظروف شیشه‌ای برای کافه‌ها و رستوران‌ها. براق، بهداشتی، سریع."/>
-  <meta name="keywords" content="پولیش لیوان, دستگاه پولیش کافه, براق کردن لیوان, تجهیزات کافه, PoliShin"/>
-  <meta name="author" content="PoliShin"/>
-  <meta property="og:title" content="PoliShin | پولیش حرفه‌ای برای کافه شما"/>
-  <meta property="og:description" content="دستگاه پولیش لیوان و ظروف شیشه‌ای با تکنولوژی گرما و چرخش هوشمند"/>
-  <meta property="og:type" content="website"/>
+  <meta name="description" content="PoliShin — دستگاه حرفه‌ای پولیش لیوان و ظروف شیشه‌ای برای کافه‌ها و رستوران‌ها"/>
+  <meta name="keywords" content="پولیش لیوان,دستگاه پولیش کافه,براق کردن لیوان,تجهیزات کافه,PoliShin"/>
   <title>PoliShin | پولیش حرفه‌ای برای کافه شما</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 80px;
+      gap: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 65% 50%, rgba(200,168,75,0.07) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(192,192,192,0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-content { flex: 1; max-width: 560px; position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(200,168,75,0.1); border: 1px solid rgba(200,168,75,0.3);
+      color: var(--gold); padding: 5px 16px; border-radius: 100px;
+      font-size: 0.8rem; margin-bottom: 24px;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.8)} }
+    .hero h1 { font-size: clamp(2.4rem,5vw,3.8rem); font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero p { font-size: 1.05rem; color: var(--white2); font-weight: 300; line-height: 2; margin-bottom: 36px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-visual { flex: 1; display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
+    .hero-img {
+      width: 420px; height: 420px;
+      border-radius: var(--radlg);
+      background: var(--black3);
+      border: 1px solid var(--gray2);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+      color: var(--gray); font-size: 0.82rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-img::before {
+      content: ''; position: absolute; inset: -1px; border-radius: var(--radlg);
+      background: linear-gradient(135deg, rgba(200,168,75,0.25), transparent, rgba(192,192,192,0.08));
+      pointer-events: none;
+    }
+    .hero-img .big-icon { font-size: 5rem; opacity: 0.1; }
+
+    /* why grid */
+    .why-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .why-num { font-size: 2.8rem; font-weight: 900; color: rgba(200,168,75,0.1); line-height: 1; margin-bottom: 12px; }
+    .why-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+    .why-card p { font-size: 0.85rem; color: var(--gray); font-weight: 300; line-height: 1.8; }
+
+    /* cta */
+    .cta-section {
+      padding: 100px 5%; text-align: center;
+      background: rgba(17,17,17,0.7); position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, rgba(200,168,75,0.07), transparent 65%);
+    }
+    .cta-section h2 { font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 900; margin-bottom: 14px; position: relative; }
+    .cta-section p { color: var(--white2); font-size: 1rem; font-weight: 300; margin-bottom: 36px; position: relative; }
+
+    @media(max-width:900px){
+      .hero{flex-direction:column;padding:100px 5% 60px;}
+      .hero-img{width:100%;max-width:340px;height:280px;}
+      .why-grid{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
 <body>
+
 <canvas id="bg-canvas"></canvas>
-
-<!-- ── NAVBAR ── -->
 <nav>
-  <a href="#" class="logo">
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-      <text x="2" y="26" font-family="sans-serif" font-size="24" font-weight="900" fill="#f0f0f0">Po</text>
-      <circle cx="20" cy="4" r="4" fill="#c8a84b"/>
-      <line x1="20" y1="-2" x2="20" y2="-1" stroke="#c8a84b" stroke-width="1.5"/>
-      <line x1="20" y1="0" x2="20" y2="0" stroke="#c8a84b" stroke-width="1.5"/>
-      <line x1="26" y1="6" x2="29" y2="3" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="28" y1="12" x2="32" y2="10" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="14" y1="6" x2="11" y2="3" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
-      <line x1="12" y1="12" x2="8" y2="10" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-    <span class="logo-text">Poli<span>Shin</span></span>
-  </a>
-
+  <a href="index.html" class="logo">Poli<span>Shin</span></a>
   <ul class="nav-links">
-    <li><a href="#product">محصول</a></li>
-    <li><a href="#why">مزایا</a></li>
-    <li><a href="#specs">مشخصات فنی</a></li>
-    <li><a href="#articles">مقالات</a></li>
-    <li><a href="#contact">تماس</a></li>
+    <li><a href="index.html" class="active">خانه</a></li>
+    <li><a href="pages/product.html">محصول</a></li>
+    <li><a href="pages/features.html">مزایا</a></li>
+    <li><a href="pages/specs.html">مشخصات فنی</a></li>
+    <li><a href="pages/articles.html">مقالات</a></li>
+    <li><a href="pages/about.html">درباره ما</a></li>
+    <li><a href="pages/contact.html" class="nav-cta">تماس و سفارش</a></li>
   </ul>
-
-  <div class="nav-cta-wrap">
-    <a href="#contact" class="nav-cta">ثبت سفارش</a>
-    <button class="nav-toggle" aria-label="منو">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+  <button class="nav-toggle" aria-label="منو"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-
+<!-- HERO -->
+<section class="hero">
   <div class="hero-content">
-    <div class="hero-eyebrow">تکنولوژی جدید پولیش ظروف</div>
-    <h1>
-      کافه شما لایق<br/>
-      <span class="highlight">براق‌ترین</span> لیوان‌هاست
-    </h1>
-    <p>
-      PoliShin با ترکیب گرما و چرخش هوشمند، لیوان‌ها و ظروف شیشه‌ای شما را
-      در کمترین زمان، بهداشتی و کاملاً براق می‌کند. سریع‌تر، ارزان‌تر، حرفه‌ای‌تر.
-    </p>
+    <div class="hero-badge">تکنولوژی جدید پولیش ظروف</div>
+    <h1>کافه شما لایق<br/><em>براق‌ترین</em> لیوان‌هاست</h1>
+    <p>PoliShin با ترکیب گرما و چرخش هوشمند، لیوان‌ها و ظروف شیشه‌ای شما را در کمترین زمان، بهداشتی و کاملاً براق می‌کند.</p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">ثبت سفارش ←</a>
-      <a href="#product" class="btn-outline">بیشتر بدانید</a>
+      <a href="pages/contact.html" class="btn btn-gold">ثبت سفارش ←</a>
+      <a href="pages/product.html" class="btn btn-outline">بیشتر بدانید</a>
     </div>
   </div>
-
   <div class="hero-visual">
-    <div class="hero-image-placeholder">
-      <div class="placeholder-icon">📷</div>
-      <p class="placeholder-text">تصویر محصول اینجا قرار می‌گیرد</p>
+    <div class="hero-img">
+      <div class="big-icon">📷</div>
+      <span>تصویر محصول</span>
     </div>
   </div>
 </section>
 
-<!-- ── STATS ── -->
+<!-- STATS -->
 <div class="stats-bar">
-  <div class="stat-item">
-    <span class="stat-number" data-count="5" data-suffix=" میله">0</span>
-    <span class="stat-label">میله پولیش همزمان</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-number" data-count="360" data-suffix="°">0</span>
-    <span class="stat-label">چرخش کامل</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-number" data-count="100" data-suffix="%">0</span>
-    <span class="stat-label">نتیجه بهداشتی</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-number" data-count="30" data-suffix="٪">0</span>
-    <span class="stat-label">ارزان‌تر از رقبا</span>
-  </div>
+  <div class="stat-item"><span class="stat-num" data-count="5" data-suffix=" میله">0</span><div class="stat-label">پولیش همزمان</div></div>
+  <div class="stat-item"><span class="stat-num" data-count="360" data-suffix="°">0</span><div class="stat-label">چرخش کامل</div></div>
+  <div class="stat-item"><span class="stat-num" data-count="100" data-suffix="٪">0</span><div class="stat-label">بهداشتی</div></div>
+  <div class="stat-item"><span class="stat-num" data-count="30" data-suffix="٪">0</span><div class="stat-label">ارزان‌تر از رقبا</div></div>
 </div>
 
-<!-- ── PRODUCT ── -->
-<section class="section" id="product">
+<!-- WHY -->
+<section class="section">
   <div class="section-header fade-up">
-    <span class="section-eyebrow">محصول</span>
-    <h2 class="section-title">دستگاه پولیش PoliShin</h2>
-    <p class="section-subtitle">
-      طراحی شده برای کافه‌ها و رستوران‌هایی که به کیفیت اهمیت می‌دهند
-    </p>
-  </div>
-
-  <div class="product-grid" style="max-width:1100px;margin:0 auto;">
-    <div class="product-image-placeholder fade-up">
-      <div class="placeholder-icon">📷</div>
-      <p class="placeholder-text">تصویر محصول</p>
-    </div>
-
-    <div class="product-features">
-      <div class="feature-item fade-up fade-up-delay-1">
-        <div class="feature-icon">⚡</div>
-        <div class="feature-text">
-          <h4>۵ میله با نخ مخصوص</h4>
-          <p>هر میله با نخ اختصاصی پولیش پوشیده شده و به‌صورت همزمان عمل می‌کند. لیوان روی میله وسطی قرار می‌گیرد و ۴ میله اطراف آن را از همه جهات پولیش می‌دهند.</p>
-        </div>
-      </div>
-      <div class="feature-item fade-up fade-up-delay-2">
-        <div class="feature-icon">🌡️</div>
-        <div class="feature-text">
-          <h4>سیستم گرمایش هوشمند</h4>
-          <p>المنت داخلی دما را کنترل می‌کند و نمایشگر LCD دما را به‌صورت لحظه‌ای نشان می‌دهد. بدون کنترلر دستی — همه چیز لمسی و هوشمند.</p>
-        </div>
-      </div>
-      <div class="feature-item fade-up fade-up-delay-3">
-        <div class="feature-icon">💎</div>
-        <div class="feature-text">
-          <h4>نتیجه بی‌نظیر</h4>
-          <p>پولیش دستی غیربهداشتی و ناهموار است. PoliShin هر بار نتیجه‌ای یکسان، براق و کاملاً بهداشتی ارائه می‌دهد.</p>
-        </div>
-      </div>
-      <div class="feature-item fade-up fade-up-delay-4">
-        <div class="feature-icon">💰</div>
-        <div class="feature-text">
-          <h4>قیمت رقابتی</h4>
-          <p>با قیمتی کمتر از دستگاه‌های مشابه موجود در بازار ایران، امکانات بیشتری دریافت می‌کنید.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── WHY POLISHIN ── -->
-<section class="section section-alt" id="why">
-  <div class="section-header fade-up">
-    <span class="section-eyebrow">چرا PoliShin؟</span>
+    <span class="eyebrow">چرا PoliShin؟</span>
     <h2 class="section-title">مزیت‌هایی که فرق می‌سازند</h2>
-    <p class="section-subtitle">هر کافه حرفه‌ای به ابزار حرفه‌ای نیاز دارد</p>
+    <p class="section-sub">هر کافه حرفه‌ای به ابزار حرفه‌ای نیاز دارد</p>
   </div>
-
   <div class="why-grid">
-    <div class="why-card fade-up fade-up-delay-1">
-      <div class="why-number">۰۱</div>
-      <h3>بهداشت تضمین‌شده</h3>
-      <p>برخلاف پولیش دستی که آلودگی منتقل می‌کند، دستگاه PoliShin فرآیند کاملاً بهداشتی را تضمین می‌کند.</p>
-    </div>
-    <div class="why-card fade-up fade-up-delay-2">
-      <div class="why-number">۰۲</div>
-      <h3>سرعت بالا</h3>
-      <p>در فشار کاری زیاد، PoliShin لیوان‌ها را سریع‌تر از روش دستی آماده می‌کند و زمان سرویس‌دهی کوتاه‌تر می‌شود.</p>
-    </div>
-    <div class="why-card fade-up fade-up-delay-3">
-      <div class="why-number">۰۳</div>
-      <h3>نمایش دمای دقیق</h3>
-      <p>LCD هوشمند دما را لحظه‌ای نمایش می‌دهد. کنترل کامل بدون هیچ حدس و گمانی.</p>
-    </div>
-    <div class="why-card fade-up fade-up-delay-4">
-      <div class="why-number">۰۴</div>
-      <h3>طراحی ایکس هوشمند</h3>
-      <p>چیدمان X شکل ۴ میله اطراف، پوشش ۳۶۰ درجه لیوان را تضمین می‌کند. هیچ نقطه‌ای جا نمی‌ماند.</p>
-    </div>
-    <div class="why-card fade-up fade-up-delay-5">
-      <div class="why-number">۰۵</div>
-      <h3>ارزان‌تر از بازار</h3>
-      <p>با قیمت پایین‌تر، امکانات بیشتری نسبت به رقبای موجود در بازار ایران دریافت می‌کنید.</p>
-    </div>
-    <div class="why-card fade-up fade-up-delay-1">
-      <div class="why-number">۰۶</div>
-      <h3>مناسب همه ظروف</h3>
-      <p>لیوان، ماگ، استکان، گیلاس — PoliShin برای طیف گسترده‌ای از ظروف شیشه‌ای طراحی شده است.</p>
-    </div>
+    <div class="card why-card fade-up delay-1"><div class="why-num">۰۱</div><h3>بهداشت تضمین‌شده</h3><p>برخلاف پولیش دستی، فرآیند کاملاً مکانیکی و بهداشتی است.</p></div>
+    <div class="card why-card fade-up delay-2"><div class="why-num">۰۲</div><h3>سرعت بالا</h3><p>در اوج شلوغی کافه، لیوان‌ها را سریع‌تر از روش دستی آماده می‌کند.</p></div>
+    <div class="card why-card fade-up delay-3"><div class="why-num">۰۳</div><h3>LCD هوشمند</h3><p>نمایشگر دما را لحظه‌ای نشان می‌دهد. کنترل کامل بدون دکمه فیزیکی.</p></div>
+    <div class="card why-card fade-up delay-4"><div class="why-num">۰۴</div><h3>طراحی X هوشمند</h3><p>چیدمان ایکس ۴ میله، پوشش ۳۶۰ درجه لیوان را تضمین می‌کند.</p></div>
+    <div class="card why-card fade-up delay-5"><div class="why-num">۰۵</div><h3>قیمت رقابتی</h3><p>با قیمت کمتر، امکانات بیشتری نسبت به رقبا دریافت می‌کنید.</p></div>
+    <div class="card why-card fade-up delay-1"><div class="why-num">۰۶</div><h3>همه ظروف</h3><p>لیوان، ماگ، استکان، گیلاس — برای طیف گسترده‌ای طراحی شده.</p></div>
   </div>
 </section>
 
-<!-- ── SPECS ── -->
-<section class="section" id="specs">
+<!-- LATEST ARTICLES -->
+<section class="section section-alt" id="articles-preview">
   <div class="section-header fade-up">
-    <span class="section-eyebrow">مشخصات فنی</span>
-    <h2 class="section-title">جزئیات دستگاه</h2>
+    <span class="eyebrow">مقالات</span>
+    <h2 class="section-title">آخرین مطالب</h2>
+    <p class="section-sub">راهنما و نکات حرفه‌ای برای کافه‌داران</p>
   </div>
-
-  <div class="specs-grid" style="max-width:1000px;margin:0 auto;">
-    <div class="product-image-placeholder fade-up" style="aspect-ratio:1/1;">
-      <div class="placeholder-icon">📷</div>
-      <p class="placeholder-text">تصویر فنی محصول</p>
-    </div>
-
-    <div class="specs-list fade-up fade-up-delay-2">
-      <div class="spec-row">
-        <span class="spec-key">تعداد میله‌ها</span>
-        <span class="spec-value gold">۵ میله</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">نوع میله مرکزی</span>
-        <span class="spec-value">نگهدارنده لیوان</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">چیدمان میله‌های جانبی</span>
-        <span class="spec-value">X (ایکس) — ۴ میله</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">سیستم گرمایش</span>
-        <span class="spec-value gold">المنت داخلی</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">نمایشگر</span>
-        <span class="spec-value">LCD — نمایش دما</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">رابط کاربری</span>
-        <span class="spec-value">لمسی — بدون دکمه فیزیکی</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">جنس نخ پولیش</span>
-        <span class="spec-value">نخ مخصوص پولیش</span>
-      </div>
-      <div class="spec-row">
-        <span class="spec-key">کاربرد</span>
-        <span class="spec-value gold">کافه، رستوران، هتل</span>
-      </div>
-    </div>
+  <div id="home-articles">
+    <div class="loading"><div class="spinner"></div></div>
+  </div>
+  <div style="margin-top:36px;" class="fade-up">
+    <a href="pages/articles.html" class="btn btn-outline">مشاهده همه مقالات ←</a>
   </div>
 </section>
 
-<!-- ── ARTICLES ── -->
-<section class="section section-alt" id="articles">
-  <div class="section-header fade-up">
-    <span class="section-eyebrow">مقالات</span>
-    <h2 class="section-title">آموزش و راهنما</h2>
-    <p class="section-subtitle">مقالاتی که به شما کمک می‌کنند کافه بهتری داشته باشید</p>
-  </div>
-
-  <div class="articles-grid">
-    <a href="pages/article.html" class="article-card fade-up fade-up-delay-1">
-      <div class="article-thumb">تصویر مقاله</div>
-      <div class="article-body">
-        <span class="article-tag">بهداشت کافه</span>
-        <h3>چرا پولیش دستی لیوان کافه‌ها خطرناک است؟</h3>
-        <p>پارچه‌های دستی ممکن است باکتری و آلودگی را منتقل کنند. در این مقاله توضیح می‌دهیم چرا...</p>
-        <div class="article-meta">
-          <span class="article-date">۱۴۰۳/۰۹/۱۵</span>
-          <span class="article-read">۳ دقیقه مطالعه ←</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="pages/article.html" class="article-card fade-up fade-up-delay-2">
-      <div class="article-thumb">تصویر مقاله</div>
-      <div class="article-body">
-        <span class="article-tag">تجهیزات</span>
-        <h3>راهنمای انتخاب تجهیزات مناسب برای کافه شما</h3>
-        <p>از دستگاه اسپرسو تا تجهیزات پولیش — همه چیزی که باید بدانید برای راه‌اندازی کافه...</p>
-        <div class="article-meta">
-          <span class="article-date">۱۴۰۳/۰۹/۰۸</span>
-          <span class="article-read">۵ دقیقه مطالعه ←</span>
-        </div>
-      </div>
-    </a>
-
-    <a href="pages/article.html" class="article-card fade-up fade-up-delay-3">
-      <div class="article-thumb">تصویر مقاله</div>
-      <div class="article-body">
-        <span class="article-tag">نکات حرفه‌ای</span>
-        <h3>تأثیر لیوان براق بر تجربه مشتری کافه</h3>
-        <p>اولین چیزی که مشتری می‌بیند ظرفیست که نوشیدنی‌اش در آن سرو می‌شود. ظاهر مهم است...</p>
-        <div class="article-meta">
-          <span class="article-date">۱۴۰۳/۰۸/۲۸</span>
-          <span class="article-read">۴ دقیقه مطالعه ←</span>
-        </div>
-      </div>
-    </a>
-  </div>
-
-  <div class="articles-more fade-up">
-    <a href="pages/articles.html" class="btn-outline">مشاهده همه مقالات</a>
-  </div>
-</section>
-
-<!-- ── CTA ── -->
+<!-- CTA -->
 <section class="cta-section">
   <h2 class="fade-up">آماده‌اید کافه‌تان را ارتقا دهید؟</h2>
-  <p class="fade-up fade-up-delay-1">همین الان سفارش ثبت کنید و اولین قدم به سمت کافه‌ای حرفه‌ای‌تر را بردارید</p>
-  <a href="#contact" class="btn-primary fade-up fade-up-delay-2">ثبت سفارش ←</a>
+  <p class="fade-up delay-1">همین الان سفارش ثبت کنید و اولین قدم را بردارید</p>
+  <a href="pages/contact.html" class="btn btn-gold fade-up delay-2">ثبت سفارش ←</a>
 </section>
 
-<!-- ── CONTACT ── -->
-<section class="section" id="contact">
-  <div class="section-header fade-up">
-    <span class="section-eyebrow">تماس با ما</span>
-    <h2 class="section-title">ثبت سفارش و استعلام قیمت</h2>
-    <p class="section-subtitle">برای ثبت سفارش یا اطلاعات بیشتر با ما در تماس باشید</p>
-  </div>
-
-  <div class="contact-grid">
-    <div class="contact-info fade-up">
-      <div class="contact-item">
-        <div class="contact-icon">📞</div>
-        <div>
-          <h4>تلفن</h4>
-          <p>به‌زودی اضافه می‌شود</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📧</div>
-        <div>
-          <h4>ایمیل</h4>
-          <p>info@polishin.ir</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">📍</div>
-        <div>
-          <h4>موقعیت</h4>
-          <p>تهران، ایران</p>
-        </div>
-      </div>
-      <div class="contact-item">
-        <div class="contact-icon">💬</div>
-        <div>
-          <h4>پشتیبانی</h4>
-          <p>شنبه تا چهارشنبه — ۹ تا ۱۸</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="contact-form fade-up fade-up-delay-2">
-      <form>
-        <div class="form-group">
-          <label>نام و نام خانوادگی</label>
-          <input type="text" placeholder="مثلاً: علی احمدی" required/>
-        </div>
-        <div class="form-group">
-          <label>شماره تماس</label>
-          <input type="tel" placeholder="09xxxxxxxxx" required/>
-        </div>
-        <div class="form-group">
-          <label>نوع کسب‌وکار</label>
-          <select>
-            <option value="">انتخاب کنید</option>
-            <option>کافه</option>
-            <option>رستوران</option>
-            <option>هتل</option>
-            <option>سایر</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>پیام</label>
-          <textarea placeholder="سوال یا درخواست خود را بنویسید..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">ارسال پیام ←</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div class="footer-about">
-      <a href="#" class="logo">
-        <span class="logo-text">Poli<span>Shin</span></span>
-      </a>
-      <p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران. کیفیت، بهداشت، و سرعت در یک دستگاه.</p>
+      <a href="index.html" class="logo">Poli<span>Shin</span></a>
+      <p>PoliShin پیشرو در ارائه راهکارهای حرفه‌ای پولیش ظروف برای کافه‌ها و رستوران‌های ایران.</p>
     </div>
-
-    <div class="footer-col">
-      <h4>صفحات</h4>
-      <ul>
-        <li><a href="#product">محصول</a></li>
-        <li><a href="#why">مزایا</a></li>
-        <li><a href="#specs">مشخصات فنی</a></li>
-        <li><a href="#articles">مقالات</a></li>
-        <li><a href="#contact">تماس</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <h4>اطلاعات</h4>
-      <ul>
-        <li><a href="#">راهنمای استفاده</a></li>
-        <li><a href="#">گارانتی</a></li>
-        <li><a href="#">سوالات متداول</a></li>
-        <li><a href="admin/index.html">پنل مدیریت</a></li>
-      </ul>
-    </div>
+    <div class="footer-col"><h4>صفحات</h4><ul>
+      <li><a href="pages/product.html">محصول</a></li>
+      <li><a href="pages/features.html">مزایا</a></li>
+      <li><a href="pages/specs.html">مشخصات فنی</a></li>
+      <li><a href="pages/articles.html">مقالات</a></li>
+    </ul></div>
+    <div class="footer-col"><h4>اطلاعات</h4><ul>
+      <li><a href="pages/about.html">درباره ما</a></li>
+      <li><a href="pages/contact.html">تماس</a></li>
+      <li><a href="admin/index.html">پنل مدیریت</a></li>
+    </ul></div>
   </div>
-
   <div class="footer-bottom">
     <p>© ۱۴۰۳ PoliShin — تمامی حقوق محفوظ است</p>
     <p>ساخته شده با ❤️ برای کافه‌های ایران</p>
@@ -410,7 +195,36 @@
 </footer>
 
 <script src="js/main.js"></script>
-<script src="js/bg3d.js"></script>
-<script src="js/api.js"></script>
+<script>
+const API = 'https://polishin-backend-production.up.railway.app/api';
+async function loadHomeArticles() {
+  const el = document.getElementById('home-articles');
+  try {
+    const res = await fetch(`${API}/articles?limit=3`);
+    const json = await res.json();
+    if (!json.success || !json.data.length) {
+      el.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>به زودی مقالات اضافه می‌شود</p></div>';
+      return;
+    }
+    el.innerHTML = `<div class="articles-grid">${json.data.map(a => `
+      <a href="pages/article.html?slug=${a.slug}" class="article-card fade-up">
+        <div class="article-thumb">${a.image ? `<img src="${'https://polishin-backend-production.up.railway.app'}${a.image}" alt="${a.title}"/>` : '<span>تصویر مقاله</span>'}</div>
+        <div class="article-body">
+          <span class="article-tag">${a.category}</span>
+          <h3>${a.title}</h3>
+          <p>${a.summary.substring(0,100)}...</p>
+          <div class="article-meta">
+            <span class="article-date">${new Date(a.createdAt).toLocaleDateString('fa-IR')}</span>
+            <span class="article-read">${a.readTime} ←</span>
+          </div>
+        </div>
+      </a>`).join('')}</div>`;
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  } catch {
+    el.innerHTML = '<div class="empty-state"><div class="empty-icon">📝</div><p>به زودی مقالات اضافه می‌شود</p></div>';
+  }
+}
+loadHomeArticles();
+</script>
 </body>
 </html>
