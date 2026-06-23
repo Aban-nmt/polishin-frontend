@@ -75,7 +75,9 @@ nav.scrolled {
   letter-spacing: 1px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
+  direction: ltr;
+  unicode-bidi: bidi-override;
 }
 .logo span { color: var(--gold); }
 
